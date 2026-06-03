@@ -675,6 +675,7 @@ function Cta() {
   const [target, setTarget] = useState("");
   const [modalOpen, setModalOpen] = useState(false);
   const [calendlyUrl, setCalendlyUrl] = useState("");
+  const leadEndpoint = "https://bmg-hub.vercel.app/api/leads";
 
   const options = [
     ["personal", "Personal brand"],
@@ -687,6 +688,22 @@ function Cta() {
     e.preventDefault();
     const selected = options.find(([v]) => v === target);
     const categoryLabel = selected ? `${selected[1]} (beviral)` : "(beviral)";
+    fetch(leadEndpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        email,
+        service: "BeViral",
+        message: `Richiesta consulenza BeViral${selected ? ` · Obiettivo: ${selected[1]}` : ""}`,
+        metadata: {
+          page: window.location.href,
+          form: "beviral_contact",
+          target,
+          userAgent: navigator.userAgent,
+        },
+      }),
+    }).catch((error) => console.warn("Lead backend unavailable", error));
     const params = new URLSearchParams({
       hide_landing_page_details: "1",
       hide_gdpr_banner: "1",

@@ -2624,6 +2624,7 @@ function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [category, setCategory] = useState("");
+  const leadEndpoint = "https://bmg-hub.vercel.app/api/leads";
 
   const categories = ["Hospitality", "Food", "Luxury / Retail", "Personal Brand", "Altro"];
 
@@ -2646,6 +2647,21 @@ function Contact() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    fetch(leadEndpoint, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name,
+        email,
+        service: category || "Consulenza BMG",
+        message: `Richiesta consulenza dal sito BMG${category ? ` · Settore: ${category}` : ""}`,
+        metadata: {
+          page: window.location.href,
+          form: "bmg_contact",
+          userAgent: navigator.userAgent,
+        },
+      }),
+    }).catch((error) => console.warn("Lead backend unavailable", error));
     const params = new URLSearchParams({
       hide_landing_page_details: "1",
       hide_gdpr_banner: "1",
