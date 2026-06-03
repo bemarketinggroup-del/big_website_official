@@ -3041,30 +3041,27 @@ function ClientStrip() {
   const trackRef  = useRef(null);
   const animRef   = useRef(null);
   const posRef    = useRef(0);
-  const pausedRef = useRef(false);
-  const SPEED = 1.1; // px/frame — veloce e fluido
+  const SPEED = 1.8; // px/frame — continuo, mai in pausa
 
   useEffect(() => {
     const track = trackRef.current;
     if (!track) return;
     const step = () => {
-      if (!pausedRef.current) {
-        posRef.current += SPEED;
-        const half = track.scrollWidth / 2;
-        if (posRef.current >= half) posRef.current -= half;
-        track.style.transform = `translateX(${-posRef.current}px)`;
-      }
+      posRef.current += SPEED;
+      const half = track.scrollWidth / 2;
+      if (posRef.current >= half) posRef.current -= half;
+      track.style.transform = `translateX(${-posRef.current}px)`;
       animRef.current = requestAnimationFrame(step);
     };
     animRef.current = requestAnimationFrame(step);
     return () => cancelAnimationFrame(animRef.current);
   }, []);
 
-  // swipe mobile
+  // swipe mobile — non interrompe il loop, aggiusta solo la posizione
   const drag = useRef({ on: false, x0: 0, p0: 0 });
-  const onTouchStart = (e) => { pausedRef.current = true; drag.current = { on: true, x0: e.touches[0].clientX, p0: posRef.current }; };
+  const onTouchStart = (e) => { drag.current = { on: true, x0: e.touches[0].clientX, p0: posRef.current }; };
   const onTouchMove  = (e) => { if (!drag.current.on) return; posRef.current = drag.current.p0 - (e.touches[0].clientX - drag.current.x0); };
-  const onTouchEnd   = () => { drag.current.on = false; pausedRef.current = false; };
+  const onTouchEnd   = () => { drag.current.on = false; };
 
   const items = [...CLIENT_STRIP_ITEMS, ...CLIENT_STRIP_ITEMS];
   // card quadrate: altezza fissa, larghezza uguale all'altezza
@@ -3073,8 +3070,6 @@ function ClientStrip() {
   return (
     <section
       style={{ overflow: "hidden", width: "100%", lineHeight: 0, background: "#0e0c08" }}
-      onMouseEnter={() => { pausedRef.current = true; }}
-      onMouseLeave={() => { pausedRef.current = false; }}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
