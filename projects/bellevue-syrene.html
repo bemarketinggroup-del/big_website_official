@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="it">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Bellevue Syrene — Case study · BMG</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/global.css">
+<link rel="stylesheet" href="../assets/css/projects.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="back" href="index.html#lavori"><span class="arr">←</span> <span class="mono">BMG · Portfolio</span></a>
+    <span class="crumb mono">Case study · 2025</span>
+  </header>
+
+  <section class="hero">
+    <div class="glow"></div>
+    <div class="wrap">
+      <div class="eyebrow"><span class="ln"></span><span class="mono">Hospitality / Luxury</span></div>
+      <h1>Bellevue Syrene</h1>
+      <div class="meta mono"><span>Sorrento, IT</span><span>Anno 2025</span><span>BeViral × BMG</span></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <p class="lead reveal">Icona della costiera sorrentina dal 1820. Abbiamo rinnovato la sua identità mantenendo la grazia del Belle Époque, traducendola in un linguaggio contemporaneo per ospiti internazionali.</p>
+    <p class="bio reveal">Affacciato sul golfo di Napoli dal 1820, Bellevue Syrene è una villa patrizia diventata hotel leggendario. Il nostro lavoro è partito dalla sua storia — gli stucchi, gli affreschi, la luce mediterranea — per costruire un'identità che parlasse a un pubblico internazionale senza perdere l'anima Belle Époque.</p>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="grid-2">
+      <div class="reveal">
+        <div class="label mono">↳ Servizi svolti</div>
+        <div class="tags">
+            <span class="tag">Brand Identity</span>
+            <span class="tag">Sito Web</span>
+            <span class="tag">Direzione Creativa</span>
+            <span class="tag">Social Media</span>
+            <span class="tag">Content Production</span>
+        </div>
+        <div class="stats">
+            <div class="stat"><div class="stat-k">+128%</div><div class="stat-v mono">Engagement social YoY</div></div>
+            <div class="stat"><div class="stat-k">3.2M</div><div class="stat-v mono">Impression campagna</div></div>
+            <div class="stat"><div class="stat-k">+41%</div><div class="stat-v mono">Direct booking</div></div>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="label mono">↳ Il progetto</div>
+        <p style="margin:0;font-size:clamp(18px,1.8vw,24px);line-height:1.5;text-wrap:pretty;">Icona della costiera sorrentina dal 1820. Abbiamo rinnovato la sua identità mantenendo la grazia del Belle Époque, traducendola in un linguaggio contemporaneo per ospiti internazionali.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding-top:0;">
+    <div class="gallery-head">
+      <h2 class="reveal">Gallery</h2>
+      <span class="mono reveal" style="color:var(--ink-muted);">Foto & video del progetto</span>
+    </div>
+    <div class="gallery reveal">
+          <image-slot id="bellevue-syrene-g1" src="../assets/images/portfolio/vetera_matera-1200.webp" loading="eager" shape="rounded" radius="14" placeholder="Foto principale" style="grid-column:span 4;grid-row:span 2;width:100%;height:100%;min-height:320px;"></image-slot>
+          <image-slot id="bellevue-syrene-g2" src="../assets/images/portfolio/favorita_hotel-1200.webp" loading="lazy" shape="rounded" radius="14" placeholder="Dettaglio" style="grid-column:span 2;width:100%;height:100%;min-height:150px;"></image-slot>
+          <div class="video-tile" data-vid="bellevue-syrene-v1" style="grid-column:span 2;min-height:150px;"><input type="file" accept="video/*" hidden /><div class="vt-empty"><span class="play">▶</span><span class="mono">Trascina o tocca · video</span></div></div>
+          <image-slot id="bellevue-syrene-g3" src="../assets/images/portfolio/vetera_matera-1200.webp" loading="lazy" shape="rounded" radius="14" placeholder="Dettaglio" style="grid-column:span 3;width:100%;height:100%;min-height:220px;"></image-slot>
+          <image-slot id="bellevue-syrene-g4" src="../assets/images/portfolio/favorita_hotel-1200.webp" loading="lazy" shape="rounded" radius="14" placeholder="Dettaglio" style="grid-column:span 3;width:100%;height:100%;min-height:220px;"></image-slot>
+          <image-slot id="bellevue-syrene-g5" src="../assets/images/portfolio/vetera_matera-1200.webp" loading="lazy" shape="rounded" radius="14" placeholder="Dettaglio" style="grid-column:span 6;width:100%;height:100%;min-height:260px;"></image-slot>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="inner">
+      <span class="mono" style="color:var(--accent);">↳ Prossimo progetto</span>
+      <h2>Grand Hotel Aminta</h2>
+      <div class="row">
+        <a class="btn btn-primary" href="../projects/grand-hotel-aminta.html">Vedi il progetto <span class="arr">→</span></a>
+        <a class="btn btn-ghost" href="index.html#lavori">Torna al portfolio</a>
+        <a class="btn btn-ghost" href="index.html#contatti">Lavoriamo insieme</a>
+      </div>
+    </div>
+  </section>
+
+  <script src="../assets/js/image-slot.js"></script>
+  <script>
+    // reveal on scroll
+    const io=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target);}})},{threshold:0.08,rootMargin:"0px 0px -32px 0px"});
+    document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+    // video tiles (session preview)
+    document.querySelectorAll(".video-tile").forEach(tile=>{
+      const input=tile.querySelector("input");
+      const open=()=>input.click();
+      tile.addEventListener("click",open);
+      tile.addEventListener("dragover",e=>{e.preventDefault();});
+      tile.addEventListener("drop",e=>{e.preventDefault();if(e.dataTransfer.files[0])load(e.dataTransfer.files[0]);});
+      input.addEventListener("change",e=>{if(e.target.files[0])load(e.target.files[0]);});
+      function load(file){
+        if(!file.type.startsWith("video/"))return;
+        const url=URL.createObjectURL(file);
+        tile.innerHTML="";tile.appendChild(input);
+        const v=document.createElement("video");v.src=url;v.muted=true;v.loop=true;v.autoplay=true;v.playsInline=true;v.controls=true;
+        tile.appendChild(v);
+      }
+    });
+  </script>
+</body>
+</html>

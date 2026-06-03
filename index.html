@@ -9,182 +9,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300;12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 
-<style>
-  :root {
-    --bg: #f3efe7;
-    --bg-deep: #0e0c08;
-    --ink: #14110b;
-    --ink-muted: #6a6358;
-    --line: rgba(20, 17, 11, 0.14);
-    --line-on-dark: rgba(243, 239, 231, 0.18);
-    --accent: #b9542c;
-    --max: 1440px;
-    --pad: 32px;
-  }
-  *, *::before, *::after { box-sizing: border-box; }
-  html, body { margin: 0; padding: 0; }
-  html { background: var(--bg); }
-  body {
-    background: var(--bg);
-    color: var(--ink);
-    font-family: "Bricolage Grotesque", system-ui, sans-serif;
-    font-feature-settings: "ss01" 1, "ss02" 1, "kern" 1;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    overflow-x: hidden;
-  }
-  ::selection { background: var(--accent); color: #fff; }
-  a { color: inherit; text-decoration: none; }
-  button { font-family: inherit; }
-
-  .mono { font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; }
-  .serif-i { font-family: "Instrument Serif", Georgia, serif; font-style: italic; font-weight: 400; }
-
-  /* hide scrollbar on marquee */
-  .marquee-mask { mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%); -webkit-mask-image: linear-gradient(90deg, transparent 0, #000 6%, #000 94%, transparent 100%); }
-
-  @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
-  @keyframes rise { from { transform: translateY(120%); } to { transform: translateY(0); } }
-  @keyframes fadein { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-
-  /* reveal on scroll */
-  .reveal { opacity: 0; transform: translateY(12px); transition: opacity .55s cubic-bezier(.25,.46,.45,.94), transform .55s cubic-bezier(.25,.46,.45,.94); will-change: opacity, transform; }
-  .reveal.in { opacity: 1; transform: translateY(0); }
-
-  /* ============== RESPONSIVE ============== */
-  @media (max-width: 860px) {
-    :root { --pad: 18px; }
-
-    /* Nav: hide center menu and tighten CTA */
-    nav ul { display: none !important; }
-    nav button { padding: 8px 12px !important; font-size: 9px !important; letter-spacing: 0.08em !important; }
-    nav > div[style*="grid-template-columns: auto 1fr auto"] {
-      grid-template-columns: auto 1fr auto !important;
-      gap: 12px !important;
-    }
-
-    /* Generic 2-col grids in main → 1-col */
-    main [style*="grid-template-columns: 1.2fr 1fr"],
-    main [style*="grid-template-columns: 1.4fr 1fr"],
-    main [style*="grid-template-columns: 1.1fr 1fr"],
-    main [style*="grid-template-columns: 1fr 1.4fr"],
-    main [style*="grid-template-columns: 1fr 1fr"] {
-      grid-template-columns: 1fr !important;
-      gap: 28px !important;
-    }
-
-    /* 4-col stats grids → 2-col */
-    main [style*="grid-template-columns: repeat(4, 1fr)"] {
-      grid-template-columns: 1fr 1fr !important;
-      gap: 16px !important;
-    }
-
-    /* Verticali slides → stack image over text, hide arrow */
-    .vert-slide { grid-template-columns: 1fr !important; }
-    .vert-slide > .vs-img { aspect-ratio: 16 / 9 !important; min-height: 0 !important; }
-    .vert-slide > .vs-arrow { display: none !important; }
-    .vert-slide > .vs-text { padding: 20px !important; }
-
-    /* Accordion lavori */
-    .acc-head {
-      grid-template-columns: 26px 1fr 36px !important;
-      gap: 10px !important;
-      padding: 18px var(--pad) !important;
-      width: 100% !important;
-      box-sizing: border-box !important;
-    }
-    .acc-cat, .acc-serv { display: none !important; }
-    .acc-name { font-size: 22px !important; }
-    .acc-num  { width: auto !important; }
-    .acc-icon { width: 32px !important; height: 32px !important; font-size: 18px !important; }
-    .acc-body { max-width: 100% !important; padding: 8px var(--pad) 32px !important; }
-
-    /* Hero H1 */
-    h1[style*="clamp(48px, 8.4vw, 144px)"] {
-      font-size: 42px !important;
-      line-height: 1 !important;
-    }
-
-    /* Various big H2 */
-    h2[style*="clamp(40px, 6vw, 96px)"] {
-      font-size: 36px !important;
-      line-height: 1 !important;
-    }
-    h2[style*="clamp(56px, 9vw, 168px)"] {
-      font-size: 44px !important;
-      line-height: 1 !important;
-    }
-    p[style*="clamp(28px, 3.6vw, 56px)"] {
-      font-size: 24px !important;
-      line-height: 1.15 !important;
-    }
-
-    /* Service rows: mobile layout */
-    main [style*="grid-template-columns: 80px 1fr auto 60px"] {
-      grid-template-columns: 24px 1fr !important;
-      gap: 10px 12px !important;
-      align-items: flex-start !important;
-      padding-top: 18px !important;
-      padding-bottom: 18px !important;
-    }
-    /* nasconde colonna tag e freccia su mobile */
-    main [style*="grid-template-columns: 80px 1fr auto 60px"] > *:nth-child(3),
-    main [style*="grid-template-columns: 80px 1fr auto 60px"] > *:nth-child(4) {
-      display: none !important;
-    }
-    /* titolo servizio */
-    main [style*="grid-template-columns: 80px 1fr auto 60px"] > div {
-      transform: none !important;
-    }
-    main span[style*="clamp(28px, 4.4vw, 64px)"] { font-size: 22px !important; }
-    /* sezione servizi: zero overflow laterale */
-    #servizi { overflow-x: hidden !important; }
-    #servizi > div { box-sizing: border-box !important; }
-
-    /* Sezione lavori — nessun overflow laterale */
-    #lavori { overflow-x: hidden !important; }
-
-    /* Hero status & bottom row stack */
-    section [style*="justify-content: space-between"][style*="flex"] { flex-wrap: wrap !important; gap: 12px !important; }
-
-    /* About: hide tilted decorative photos on mobile */
-    section#chi-siamo > div > div[style*="position: absolute"] {
-      display: none !important;
-    }
-
-    /* Beviral spotlight wordmark */
-    section h2[style*="clamp(96px, 18vw, 320px)"] {
-      font-size: 72px !important;
-      line-height: 0.9 !important;
-    }
-
-    /* Sectors marquee text */
-    section span[style*="font-size: 42px"] { font-size: 26px !important; }
-
-    /* Footer big wordmark + 4-col → 2-col */
-    footer [style*="clamp(120px, 24vw, 420px)"] { font-size: 96px !important; }
-    footer [style*="grid-template-columns: repeat(4, 1fr)"] {
-      grid-template-columns: 1fr 1fr !important;
-      gap: 16px !important;
-    }
-
-    /* Tweaks panel: smaller */
-    .twk-panel { width: 240px !important; right: 8px !important; bottom: 8px !important; }
-  }
-
-  @media (max-width: 480px) {
-    :root { --pad: 14px; }
-
-    h1[style*="clamp(48px, 8.4vw, 144px)"] { font-size: 36px !important; }
-    h2[style*="clamp(56px, 9vw, 168px)"] { font-size: 38px !important; }
-    section h2[style*="clamp(96px, 18vw, 320px)"] { font-size: 54px !important; }
-    footer [style*="clamp(120px, 24vw, 420px)"] { font-size: 64px !important; }
-
-    /* Stats 2x2 stays */
-    /* Footer 2-col stays */
-  }
-</style>
+<link rel="stylesheet" href="assets/css/global.css">
+<link rel="stylesheet" href="assets/css/home.css">
+<link rel="stylesheet" href="assets/css/responsive.css">
 
 <script type="application/json" id="bmg-config">
   {}
@@ -235,7 +62,7 @@
  * inline or from a parent grid — so it composes with any layout.
  *
  * Usage:
- *   <script src="image-slot.js"><\/script>
+ *   <script src="assets/js/image-slot.js"><\/script>
  *   <image-slot id="hero"   style="width:800px;height:450px" shape="rounded" radius="20"
  *               placeholder="Drop a hero image"></image-slot>
  *   <image-slot id="avatar" style="width:120px;height:120px" shape="circle"></image-slot>
@@ -1640,7 +1467,7 @@ Object.assign(window, { SectionNumber, BMGLogo, Reveal, Placeholder, CursorBlob,
 /* ============== HERO MEDIA — slideshow di sfondo (desktop) / video verticale (mobile) ============== */
 function HeroMedia() {
   const imgData = (window.BMG_IMAGES && window.BMG_IMAGES.hero) || [];
-  const imgs = imgData.length ? imgData.map(i => i.src) : ["assets/images/vetera_matera-1200.webp", "assets/images/favorita_hotel-1200.webp", "assets/images/costiera_gin-1200.webp"];
+  const imgs = imgData.length ? imgData.map(i => i.src) : ["assets/images/portfolio/vetera_matera-1200.webp", "assets/images/portfolio/favorita_hotel-1200.webp", "assets/images/portfolio/costiera_gin-1200.webp"];
   const [active, setActive] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [vidUrl, setVidUrl] = useState(null);
@@ -1676,7 +1503,7 @@ function HeroMedia() {
   );
 
   if (isMobile) {
-    const videoSrc = vidUrl || blobVid || "assets/hero-mobile.mp4";
+    const videoSrc = vidUrl || blobVid || "assets/images/homepage/hero-mobile.mp4";
     return (
       <div style={{ position: "absolute", inset: 0, overflow: "hidden", zIndex: 0 }}>
         <div
@@ -1694,7 +1521,7 @@ function HeroMedia() {
               // requests, which breaks streaming <video src>. Fall back to
               // fetching the whole file as a blob URL.
               if (vidUrl || blobVid) return;
-              fetch("assets/hero-mobile.mp4").then((r) => r.blob())
+              fetch("assets/images/homepage/hero-mobile.mp4").then((r) => r.blob())
                 .then((b) => setBlobVid(URL.createObjectURL(b))).catch(() => {});
             }}
             style={{ width: "100%", height: "100%", objectFit: "cover" }} />
@@ -1943,10 +1770,10 @@ function VerticalSlide({ index, name, desc, slotId, id, src, line }) {
 
 function About() {
   const verticals = [
-    { name: "Hotel", desc: "Hospitality & Luxury", id: "about-hotel", src: "assets/images/favorita_hotel-800.webp", line: "Identità e contenuti per hotel e strutture luxury." },
-    { name: "Brand", desc: "Retail & Identity", id: "about-brand", src: "assets/images/vetera_matera-800.webp", line: "Brand identity e contenuti per retail e aziende." },
-    { name: "Food", desc: "Food & Beverage", id: "about-food", src: "assets/images/zest_restaurant-800.webp", line: "Storytelling e visual per ristoranti e brand del gusto." },
-    { name: "Personal brand", desc: "Founder & Creator", id: "about-personal", src: "assets/images/costiera_gin-800.webp", line: "Posizionamento e crescita per founder e creator." },
+    { name: "Hotel", desc: "Hospitality & Luxury", id: "about-hotel", src: "assets/images/portfolio/favorita_hotel-800.webp", line: "Identità e contenuti per hotel e strutture luxury." },
+    { name: "Brand", desc: "Retail & Identity", id: "about-brand", src: "assets/images/portfolio/vetera_matera-800.webp", line: "Brand identity e contenuti per retail e aziende." },
+    { name: "Food", desc: "Food & Beverage", id: "about-food", src: "assets/images/portfolio/zest_restaurant-800.webp", line: "Storytelling e visual per ristoranti e brand del gusto." },
+    { name: "Personal brand", desc: "Founder & Creator", id: "about-personal", src: "assets/images/portfolio/costiera_gin-800.webp", line: "Posizionamento e crescita per founder e creator." },
   ];
   const stats = [[50, "brand seguiti"], [6, "anni di lavoro"], [4, "settori verticali"], [1, "unico partner"]];
   return (
@@ -2204,14 +2031,14 @@ const PROJECT_LIST = [
 /* immagini accordion — gestite via /data/images.js */
 const _acc = (window.BMG_IMAGES && window.BMG_IMAGES.accordion) || {};
 const PROJECT_PHOTOS = {
-  "bellevue-syrene":          (_acc.clientBellevueSyrene    || {}).src || "assets/images/vetera_matera-800.webp",
-  "grand-hotel-aminta":       (_acc.clientGrandHotelAminta  || {}).src || "assets/images/favorita_hotel-800.webp",
-  "grand-hotel-la-favorita":  (_acc.clientGrandHotelLaFavorita || {}).src || "assets/images/favorita_hotel-800.webp",
-  "studio-vallone":           (_acc.clientStudioVallone     || {}).src || "assets/images/vetera_matera-800.webp",
-  "marettima-beach-club":     (_acc.clientMarettimaBeachClub|| {}).src || "assets/images/costiera_gin-800.webp",
-  "vetera-matera":            (_acc.clientVeteraMatera      || {}).src || "assets/images/vetera_matera-800.webp",
-  "zest-restaurant":          (_acc.clientZestRestaurant    || {}).src || "assets/images/zest_restaurant-800.webp",
-  "costiera-gin":             (_acc.clientCostieraGin       || {}).src || "assets/images/costiera_gin-800.webp",
+  "bellevue-syrene":          (_acc.clientBellevueSyrene    || {}).src || "assets/images/portfolio/vetera_matera-800.webp",
+  "grand-hotel-aminta":       (_acc.clientGrandHotelAminta  || {}).src || "assets/images/portfolio/favorita_hotel-800.webp",
+  "grand-hotel-la-favorita":  (_acc.clientGrandHotelLaFavorita || {}).src || "assets/images/portfolio/favorita_hotel-800.webp",
+  "studio-vallone":           (_acc.clientStudioVallone     || {}).src || "assets/images/portfolio/vetera_matera-800.webp",
+  "marettima-beach-club":     (_acc.clientMarettimaBeachClub|| {}).src || "assets/images/portfolio/costiera_gin-800.webp",
+  "vetera-matera":            (_acc.clientVeteraMatera      || {}).src || "assets/images/portfolio/vetera_matera-800.webp",
+  "zest-restaurant":          (_acc.clientZestRestaurant    || {}).src || "assets/images/portfolio/zest_restaurant-800.webp",
+  "costiera-gin":             (_acc.clientCostieraGin       || {}).src || "assets/images/portfolio/costiera_gin-800.webp",
 };
 
 function Projects() {
@@ -2357,7 +2184,7 @@ function AccordionRow({ project, index, isOpen, onToggle, onRowEnter, onRowLeave
                 <span key={si} className="mono" style={{ border: "1px solid rgba(243,239,231,0.32)", borderRadius: 999, padding: "6px 13px", color: ink }}>{s}</span>
               ))}
             </div>
-            <a href={`progetto-${p.slug}.html`} data-cursor="hover" style={{
+            <a href={`projects/${p.slug}.html`} data-cursor="hover" style={{
               marginTop: 4, alignSelf: "flex-start", display: "inline-flex", alignItems: "center", gap: 10,
               fontFamily: "Bricolage Grotesque", fontWeight: 500, fontSize: 16, color: ink,
               borderBottom: `1px solid ${ink}`, paddingBottom: 4,
@@ -2400,8 +2227,8 @@ function ProjectSheet({ project, onClose, onPrev, onNext, index, total }) {
   const p = project;
   const nextP = PROJECT_LIST[(index + 1) % total];
   // foto provvisorie per gli slot della scheda
-  const ph = PROJECT_PHOTOS[p.slug] || "assets/images/vetera_matera-800.webp";
-  const ph2 = (ph === "assets/images/vetera_matera-800.webp") ? "assets/images/favorita_hotel-800.webp" : "assets/images/vetera_matera-800.webp";
+  const ph = PROJECT_PHOTOS[p.slug] || "assets/images/portfolio/vetera_matera-800.webp";
+  const ph2 = (ph === "assets/images/portfolio/vetera_matera-800.webp") ? "assets/images/portfolio/favorita_hotel-800.webp" : "assets/images/portfolio/vetera_matera-800.webp";
 
   return (
     <div
@@ -3020,21 +2847,21 @@ function Footer() {
 /* ============== CLIENT STRIP ============== */
 /*  15 slot facilmente sostituibili — aggiorna src e logo nel array CLIENT_STRIP_ITEMS  */
 const CLIENT_STRIP_ITEMS = [
-  { id: "cs-01", logo: "Bellevue Syrene",         src: "assets/images/vetera_matera-800.webp" },
-  { id: "cs-02", logo: "Grand Hotel Aminta",       src: "assets/images/favorita_hotel-800.webp" },
-  { id: "cs-03", logo: "Grand Hotel La Favorita",  src: "assets/images/favorita_hotel-800.webp" },
-  { id: "cs-04", logo: "Vetera Matera",            src: "assets/images/vetera_matera-800.webp" },
-  { id: "cs-05", logo: "Zest Restaurant",          src: "assets/images/zest_restaurant-800.webp" },
-  { id: "cs-06", logo: "Costiera Gin",             src: "assets/images/costiera_gin-800.webp" },
-  { id: "cs-07", logo: "Studio Vallone",           src: "assets/images/vetera_matera-800.webp" },
-  { id: "cs-08", logo: "Marettima Beach Club",     src: "assets/images/costiera_gin-800.webp" },
-  { id: "cs-09", logo: "Cliente 09",               src: "assets/images/favorita_hotel-800.webp" },
-  { id: "cs-10", logo: "Cliente 10",               src: "assets/images/zest_restaurant-800.webp" },
-  { id: "cs-11", logo: "Cliente 11",               src: "assets/images/vetera_matera-800.webp" },
-  { id: "cs-12", logo: "Cliente 12",               src: "assets/images/costiera_gin-800.webp" },
-  { id: "cs-13", logo: "Cliente 13",               src: "assets/images/favorita_hotel-800.webp" },
-  { id: "cs-14", logo: "Cliente 14",               src: "assets/images/zest_restaurant-800.webp" },
-  { id: "cs-15", logo: "Cliente 15",               src: "assets/images/vetera_matera-800.webp" },
+  { id: "cs-01", logo: "Bellevue Syrene",         src: "assets/images/portfolio/vetera_matera-800.webp" },
+  { id: "cs-02", logo: "Grand Hotel Aminta",       src: "assets/images/portfolio/favorita_hotel-800.webp" },
+  { id: "cs-03", logo: "Grand Hotel La Favorita",  src: "assets/images/portfolio/favorita_hotel-800.webp" },
+  { id: "cs-04", logo: "Vetera Matera",            src: "assets/images/portfolio/vetera_matera-800.webp" },
+  { id: "cs-05", logo: "Zest Restaurant",          src: "assets/images/portfolio/zest_restaurant-800.webp" },
+  { id: "cs-06", logo: "Costiera Gin",             src: "assets/images/portfolio/costiera_gin-800.webp" },
+  { id: "cs-07", logo: "Studio Vallone",           src: "assets/images/portfolio/vetera_matera-800.webp" },
+  { id: "cs-08", logo: "Marettima Beach Club",     src: "assets/images/portfolio/costiera_gin-800.webp" },
+  { id: "cs-09", logo: "Cliente 09",               src: "assets/images/portfolio/favorita_hotel-800.webp" },
+  { id: "cs-10", logo: "Cliente 10",               src: "assets/images/portfolio/zest_restaurant-800.webp" },
+  { id: "cs-11", logo: "Cliente 11",               src: "assets/images/portfolio/vetera_matera-800.webp" },
+  { id: "cs-12", logo: "Cliente 12",               src: "assets/images/portfolio/costiera_gin-800.webp" },
+  { id: "cs-13", logo: "Cliente 13",               src: "assets/images/portfolio/favorita_hotel-800.webp" },
+  { id: "cs-14", logo: "Cliente 14",               src: "assets/images/portfolio/zest_restaurant-800.webp" },
+  { id: "cs-15", logo: "Cliente 15",               src: "assets/images/portfolio/vetera_matera-800.webp" },
 ];
 
 function ClientStrip() {

@@ -1,0 +1,133 @@
+/* BMG — Responsive (breakpoints) */
+
+@media (max-width: 860px) {
+    :root { --pad: 18px; }
+
+    /* Nav: hide center menu and tighten CTA */
+    nav ul { display: none !important; }
+    nav button { padding: 8px 12px !important; font-size: 9px !important; letter-spacing: 0.08em !important; }
+    nav > div[style*="grid-template-columns: auto 1fr auto"] {
+      grid-template-columns: auto 1fr auto !important;
+      gap: 12px !important;
+    }
+
+    /* Generic 2-col grids in main → 1-col */
+    main [style*="grid-template-columns: 1.2fr 1fr"],
+    main [style*="grid-template-columns: 1.4fr 1fr"],
+    main [style*="grid-template-columns: 1.1fr 1fr"],
+    main [style*="grid-template-columns: 1fr 1.4fr"],
+    main [style*="grid-template-columns: 1fr 1fr"] {
+      grid-template-columns: 1fr !important;
+      gap: 28px !important;
+    }
+
+    /* 4-col stats grids → 2-col */
+    main [style*="grid-template-columns: repeat(4, 1fr)"] {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 16px !important;
+    }
+
+    /* Verticali slides → stack image over text, hide arrow */
+    .vert-slide { grid-template-columns: 1fr !important; }
+    .vert-slide > .vs-img { aspect-ratio: 16 / 9 !important; min-height: 0 !important; }
+    .vert-slide > .vs-arrow { display: none !important; }
+    .vert-slide > .vs-text { padding: 20px !important; }
+
+    /* Accordion lavori */
+    .acc-head {
+      grid-template-columns: 26px 1fr 36px !important;
+      gap: 10px !important;
+      padding: 18px var(--pad) !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+    .acc-cat, .acc-serv { display: none !important; }
+    .acc-name { font-size: 22px !important; }
+    .acc-num  { width: auto !important; }
+    .acc-icon { width: 32px !important; height: 32px !important; font-size: 18px !important; }
+    .acc-body { max-width: 100% !important; padding: 8px var(--pad) 32px !important; }
+
+    /* Hero H1 */
+    h1[style*="clamp(48px, 8.4vw, 144px)"] {
+      font-size: 42px !important;
+      line-height: 1 !important;
+    }
+
+    /* Various big H2 */
+    h2[style*="clamp(40px, 6vw, 96px)"] {
+      font-size: 36px !important;
+      line-height: 1 !important;
+    }
+    h2[style*="clamp(56px, 9vw, 168px)"] {
+      font-size: 44px !important;
+      line-height: 1 !important;
+    }
+    p[style*="clamp(28px, 3.6vw, 56px)"] {
+      font-size: 24px !important;
+      line-height: 1.15 !important;
+    }
+
+    /* Service rows: mobile layout */
+    main [style*="grid-template-columns: 80px 1fr auto 60px"] {
+      grid-template-columns: 24px 1fr !important;
+      gap: 10px 12px !important;
+      align-items: flex-start !important;
+      padding-top: 18px !important;
+      padding-bottom: 18px !important;
+    }
+    /* nasconde colonna tag e freccia su mobile */
+    main [style*="grid-template-columns: 80px 1fr auto 60px"] > *:nth-child(3),
+    main [style*="grid-template-columns: 80px 1fr auto 60px"] > *:nth-child(4) {
+      display: none !important;
+    }
+    /* titolo servizio */
+    main [style*="grid-template-columns: 80px 1fr auto 60px"] > div {
+      transform: none !important;
+    }
+    main span[style*="clamp(28px, 4.4vw, 64px)"] { font-size: 22px !important; }
+    /* sezione servizi: zero overflow laterale */
+    #servizi { overflow-x: hidden !important; }
+    #servizi > div { box-sizing: border-box !important; }
+
+    /* Sezione lavori — nessun overflow laterale */
+    #lavori { overflow-x: hidden !important; }
+
+    /* Hero status & bottom row stack */
+    section [style*="justify-content: space-between"][style*="flex"] { flex-wrap: wrap !important; gap: 12px !important; }
+
+    /* About: hide tilted decorative photos on mobile */
+    section#chi-siamo > div > div[style*="position: absolute"] {
+      display: none !important;
+    }
+
+    /* Beviral spotlight wordmark */
+    section h2[style*="clamp(96px, 18vw, 320px)"] {
+      font-size: 72px !important;
+      line-height: 0.9 !important;
+    }
+
+    /* Sectors marquee text */
+    section span[style*="font-size: 42px"] { font-size: 26px !important; }
+
+    /* Footer big wordmark + 4-col → 2-col */
+    footer [style*="clamp(120px, 24vw, 420px)"] { font-size: 96px !important; }
+    footer [style*="grid-template-columns: repeat(4, 1fr)"] {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 16px !important;
+    }
+
+    /* Tweaks panel: smaller */
+    .twk-panel { width: 240px !important; right: 8px !important; bottom: 8px !important; }
+  }
+
+  @media (max-width: 480px) {
+    :root { --pad: 14px; }
+
+    h1[style*="clamp(48px, 8.4vw, 144px)"] { font-size: 36px !important; }
+    h2[style*="clamp(56px, 9vw, 168px)"] { font-size: 38px !important; }
+    section h2[style*="clamp(96px, 18vw, 320px)"] { font-size: 54px !important; }
+    footer [style*="clamp(120px, 24vw, 420px)"] { font-size: 64px !important; }
+
+    /* Stats 2x2 stays */
+    /* Footer 2-col stays */
+  }
