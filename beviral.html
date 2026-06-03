@@ -22,6 +22,42 @@
 <script type="text/babel">
 
 const { useEffect, useState, useRef } = React;
+const BMG_CMS_ENDPOINT = "https://bmg-hub.vercel.app/api/public-site-content";
+
+function normalizeCmsRows(rows) {
+  return rows.reduce((acc, row) => {
+    acc[row.slug] = {
+      type: row.type,
+      title: row.title || "",
+      ...(row.payload || {}),
+    };
+    return acc;
+  }, {});
+}
+
+function useBmgCms() {
+  const [cms, setCms] = useState({});
+  useEffect(() => {
+    let alive = true;
+    fetch(BMG_CMS_ENDPOINT)
+      .then((response) => response.ok ? response.json() : [])
+      .then((rows) => {
+        if (alive) setCms(normalizeCmsRows(Array.isArray(rows) ? rows : []));
+      })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
+  return cms;
+}
+
+function cmsSlot(cms, slug) {
+  return cms[slug] || {};
+}
+
+function cmsText(cms, slug, field, fallback) {
+  const value = cmsSlot(cms, slug)[field];
+  return value ? value : fallback;
+}
 
 /* ─────────────────────── shared primitives ─────────────────────── */
 function Reveal({ children, delay = 0, as: As = "div", style, className = "", ...rest }) {
@@ -253,7 +289,8 @@ function Nav() {
 }
 
 /* ─────────────────────── HERO ─────────────────────── */
-function Hero() {
+function Hero({ cms = {} }) {
+  const heroCopy = cmsSlot(cms, "beviral.hero.copy");
   return (
     <section style={{ position: "relative", paddingTop: 120, paddingBottom: 48, overflow: "hidden" }}>
       {/* floating stickers */}
@@ -288,13 +325,27 @@ function Hero() {
           letterSpacing: "-0.03em",
           textWrap: "balance"
         }}>
-          <span className="underline-marker">Diventa virale.</span>
-          <br />
-          <span className="serif-i" style={{ color: "var(--blue)" }}>Davvero</span>.
+          {heroCopy.title ? (
+            <>
+              <span className="underline-marker">{heroCopy.title}</span>
+              {heroCopy.subtitle && (
+                <>
+                  <br />
+                  <span className="serif-i" style={{ color: "var(--blue)" }}>{heroCopy.subtitle}</span>
+                </>
+              )}
+            </>
+          ) : (
+            <>
+              <span className="underline-marker">Diventa virale.</span>
+              <br />
+              <span className="serif-i" style={{ color: "var(--blue)" }}>Davvero</span>.
+            </>
+          )}
         </h2>
         <div>
           <p style={{ margin: 0, fontSize: 18, lineHeight: 1.5, maxWidth: 460, color: "var(--ink)" }}>
-            La divisione di BMG dedicata alla crescita <strong>organica</strong>, al personal branding e ai video che fanno <strong>copertura</strong>. Aiutiamo imprenditori, professionisti e aziende a diventare un punto di riferimento nel proprio settore.
+            {cmsText(cms, "beviral.hero.copy", "body", <>La divisione di BMG dedicata alla crescita <strong>organica</strong>, al personal branding e ai video che fanno <strong>copertura</strong>. Aiutiamo imprenditori, professionisti e aziende a diventare un punto di riferimento nel proprio settore.</>)}
           </p>
           <div style={{ display: "flex", gap: 12, marginTop: 28, flexWrap: "wrap" }}>
             <a href="#cta" className="sticker" style={{ background: "var(--blue)", color: "#fff", borderColor: "var(--ink)", fontSize: 12, padding: "12px 22px" }}>
@@ -1132,11 +1183,12 @@ function VideoShowcase() {
 
 /* ─────────────────────── APP ─────────────────────── */
 function App() {
+  const cms = useBmgCms();
   return (
     <>
       <Nav />
       <main>
-        <Hero />
+        <Hero cms={cms} />
         <VideoShowcase />
         <PopMarquee />
         <Manifesto />

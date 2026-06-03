@@ -1212,6 +1212,42 @@ Object.assign(window, {
 /* ----- shared primitives ----- */
 
 const { useEffect, useState, useRef, useMemo, useCallback } = React;
+const BMG_CMS_ENDPOINT = "https://bmg-hub.vercel.app/api/public-site-content";
+
+function normalizeCmsRows(rows) {
+  return rows.reduce((acc, row) => {
+    acc[row.slug] = {
+      type: row.type,
+      title: row.title || "",
+      ...(row.payload || {}),
+    };
+    return acc;
+  }, {});
+}
+
+function useBmgCms() {
+  const [cms, setCms] = useState({});
+  useEffect(() => {
+    let alive = true;
+    fetch(BMG_CMS_ENDPOINT)
+      .then((response) => response.ok ? response.json() : [])
+      .then((rows) => {
+        if (alive) setCms(normalizeCmsRows(Array.isArray(rows) ? rows : []));
+      })
+      .catch(() => {});
+    return () => { alive = false; };
+  }, []);
+  return cms;
+}
+
+function cmsSlot(cms, slug) {
+  return cms[slug] || {};
+}
+
+function cmsText(cms, slug, field, fallback) {
+  const value = cmsSlot(cms, slug)[field];
+  return value ? value : fallback;
+}
 
 /* Numbered section header — "01. CHI SIAMO" */
 function SectionNumber({ n, label, dark }) {
@@ -1465,9 +1501,10 @@ function Nav({ onContact }) {
 Object.assign(window, { SectionNumber, BMGLogo, Reveal, Placeholder, CursorBlob, Nav });
 
 /* ============== HERO MEDIA — slideshow di sfondo (desktop) / video verticale (mobile) ============== */
-function HeroMedia() {
+function HeroMedia({ cms = {} }) {
   const imgData = (window.BMG_IMAGES && window.BMG_IMAGES.hero) || [];
-  const imgs = imgData.length ? imgData.map(i => i.src) : ["assets/images/portfolio/vetera_matera-1200.webp", "assets/images/portfolio/favorita_hotel-1200.webp", "assets/images/portfolio/costiera_gin-1200.webp"];
+  const fallbackImgs = imgData.length ? imgData.map(i => i.src) : ["assets/images/portfolio/vetera_matera-1200.webp", "assets/images/portfolio/favorita_hotel-1200.webp", "assets/images/portfolio/costiera_gin-1200.webp"];
+  const imgs = fallbackImgs.map((src, index) => cmsText(cms, `home.hero.image.${index + 1}`, "image_url", src));
   const [active, setActive] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const [vidUrl, setVidUrl] = useState(null);
@@ -1572,9 +1609,11 @@ function HeroMedia() {
 }
 
 /* ============== HERO ============== */
-function Hero() {
+function Hero({ cms = {} }) {
   const rotators = ["crescere", "brillare", "vendere", "emozionare", "convertire"];
   const [idx, setIdx] = useState(0);
+  const heroCopy = cmsSlot(cms, "home.hero.copy");
+  const dynamicHero = Boolean(heroCopy.title || heroCopy.subtitle);
   useEffect(() => {
     const t = setInterval(() => setIdx((i) => (i + 1) % rotators.length), 2400);
     return () => clearInterval(t);
@@ -1582,7 +1621,7 @@ function Hero() {
 
   return (
     <section id="top" style={{ position: "relative", paddingTop: 140, paddingBottom: 80, overflow: "hidden" }}>
-      <HeroMedia />
+      <HeroMedia cms={cms} />
 
       {/* big statement */}
       <div style={{ position: "relative", zIndex: 1, maxWidth: "var(--max)", margin: "60px auto 0", padding: "0 var(--pad)" }}>
@@ -1595,12 +1634,24 @@ function Hero() {
           letterSpacing: "-0.04em",
           textWrap: "balance",
         }}>
-          Comunicazione,
-          <br />
-          contenuti e strategie
-          <br />
-          per brand che vogliono{" "}
-          <span style={{
+          {dynamicHero ? (
+            <>
+              {heroCopy.title}
+              {heroCopy.subtitle && (
+                <>
+                  <br />
+                  <span className="serif-i" style={{ color: "var(--accent)", fontWeight: 400 }}>{heroCopy.subtitle}</span>
+                </>
+              )}
+            </>
+          ) : (
+            <>
+              Comunicazione,
+              <br />
+              contenuti e strategie
+              <br />
+              per brand che vogliono{" "}
+              <span style={{
             display: "inline-flex", alignItems: "baseline", verticalAlign: "baseline",
             position: "relative",
           }}>
@@ -1632,6 +1683,8 @@ function Hero() {
             }} />
             <span style={{ marginLeft: "0.05em" }}>.</span>
           </span>
+            </>
+          )}
         </h1>
       </div>
 
@@ -1647,7 +1700,7 @@ function Hero() {
           fontSize: 17, lineHeight: 1.5,
           color: "var(--ink)",
         }}>
-          Un unico partner per <em className="serif-i" style={{ color: "var(--accent)" }}>strategia</em>, <em className="serif-i" style={{ color: "var(--accent)" }}>creatività</em> e <em className="serif-i" style={{ color: "var(--accent)" }}>produzione</em>. Dalla brand identity al sito, dalle campagne ai contenuti: tutto sotto lo stesso tetto, con la stessa visione.
+          {cmsText(cms, "home.hero.copy", "body", <>Un unico partner per <em className="serif-i" style={{ color: "var(--accent)" }}>strategia</em>, <em className="serif-i" style={{ color: "var(--accent)" }}>creatività</em> e <em className="serif-i" style={{ color: "var(--accent)" }}>produzione</em>. Dalla brand identity al sito, dalle campagne ai contenuti: tutto sotto lo stesso tetto, con la stessa visione.</>)}
         </p>
         <div style={{ display: "flex", flexDirection: "column", gap: 14, alignItems: "flex-end" }}>
           <span className="mono" style={{ color: "var(--ink-muted)" }}>↓ esplora</span>
@@ -1768,12 +1821,12 @@ function VerticalSlide({ index, name, desc, slotId, id, src, line }) {
   );
 }
 
-function About() {
+function About({ cms = {} }) {
   const verticals = [
-    { name: "Hotel", desc: "Hospitality & Luxury", id: "about-hotel", src: "assets/images/portfolio/favorita_hotel-800.webp", line: "Identità e contenuti per hotel e strutture luxury." },
-    { name: "Brand", desc: "Retail & Identity", id: "about-brand", src: "assets/images/portfolio/vetera_matera-800.webp", line: "Brand identity e contenuti per retail e aziende." },
-    { name: "Food", desc: "Food & Beverage", id: "about-food", src: "assets/images/portfolio/zest_restaurant-800.webp", line: "Storytelling e visual per ristoranti e brand del gusto." },
-    { name: "Personal brand", desc: "Founder & Creator", id: "about-personal", src: "assets/images/portfolio/costiera_gin-800.webp", line: "Posizionamento e crescita per founder e creator." },
+    { name: "Hotel", desc: "Hospitality & Luxury", id: "about-hotel", src: cmsText(cms, "home.about.vertical.1", "image_url", "assets/images/portfolio/favorita_hotel-800.webp"), line: cmsText(cms, "home.about.vertical.1", "body", "Identità e contenuti per hotel e strutture luxury.") },
+    { name: "Brand", desc: "Retail & Identity", id: "about-brand", src: cmsText(cms, "home.about.vertical.2", "image_url", "assets/images/portfolio/vetera_matera-800.webp"), line: cmsText(cms, "home.about.vertical.2", "body", "Brand identity e contenuti per retail e aziende.") },
+    { name: "Food", desc: "Food & Beverage", id: "about-food", src: cmsText(cms, "home.about.vertical.3", "image_url", "assets/images/portfolio/zest_restaurant-800.webp"), line: cmsText(cms, "home.about.vertical.3", "body", "Storytelling e visual per ristoranti e brand del gusto.") },
+    { name: "Personal brand", desc: "Founder & Creator", id: "about-personal", src: cmsText(cms, "home.about.vertical.4", "image_url", "assets/images/portfolio/costiera_gin-800.webp"), line: cmsText(cms, "home.about.vertical.4", "body", "Posizionamento e crescita per founder e creator.") },
   ];
   const stats = [[50, "brand seguiti"], [6, "anni di lavoro"], [4, "settori verticali"], [1, "unico partner"]];
   return (
@@ -3129,6 +3182,7 @@ const BG_OPTIONS = ["#f3efe7", "#ffffff", "#ece6da", "#0e0c08"];
 
 function App() {
   const [t, setTweak] = useTweaks(TWEAK_DEFAULTS);
+  const cms = useBmgCms();
 
   useEffect(() => {
     const root = document.documentElement;
@@ -3150,9 +3204,9 @@ function App() {
     <>
       <Nav onContact={onContact} />
       <main>
-        <Hero />
+        <Hero cms={cms} />
         <Sectors />
-        <About />
+        <About cms={cms} />
         <Services />
         <Projects />
         <ClientStrip />
