@@ -3038,10 +3038,10 @@ const CLIENT_STRIP_ITEMS = [
 ];
 
 function ClientStrip() {
-  const trackRef  = useRef(null);
-  const animRef   = useRef(null);
-  const posRef    = useRef(0);
-  const SPEED = 1.8; // px/frame — continuo, mai in pausa
+  const trackRef = useRef(null);
+  const animRef  = useRef(null);
+  const posRef   = useRef(0);
+  const SPEED    = 2.2; // px/frame (+20%)
 
   useEffect(() => {
     const track = trackRef.current;
@@ -3057,19 +3057,22 @@ function ClientStrip() {
     return () => cancelAnimationFrame(animRef.current);
   }, []);
 
-  // swipe mobile — non interrompe il loop, aggiusta solo la posizione
   const drag = useRef({ on: false, x0: 0, p0: 0 });
   const onTouchStart = (e) => { drag.current = { on: true, x0: e.touches[0].clientX, p0: posRef.current }; };
   const onTouchMove  = (e) => { if (!drag.current.on) return; posRef.current = drag.current.p0 - (e.touches[0].clientX - drag.current.x0); };
   const onTouchEnd   = () => { drag.current.on = false; };
 
   const items = [...CLIENT_STRIP_ITEMS, ...CLIENT_STRIP_ITEMS];
-  // card quadrate: altezza fissa, larghezza uguale all'altezza
-  const H = "clamp(260px, 28vw, 420px)";
+  const H = "clamp(300px, 32vw, 480px)";
 
   return (
     <section
-      style={{ overflow: "hidden", width: "100%", lineHeight: 0, background: "#0e0c08" }}
+      style={{
+        overflow: "hidden",
+        width: "100%",
+        lineHeight: 0,
+        background: "var(--bg-deep)", /* nero BMG */
+      }}
       onTouchStart={onTouchStart}
       onTouchMove={onTouchMove}
       onTouchEnd={onTouchEnd}
@@ -3077,12 +3080,7 @@ function ClientStrip() {
     >
       <div
         ref={trackRef}
-        style={{
-          display: "flex",
-          gap: 0,
-          width: "max-content",
-          willChange: "transform",
-        }}
+        style={{ display: "flex", width: "max-content", willChange: "transform" }}
       >
         {items.map((item, i) => (
           <div
@@ -3093,7 +3091,7 @@ function ClientStrip() {
               width: H,
               height: H,
               overflow: "hidden",
-              background: "#111",
+              background: "var(--bg-deep)",
             }}
           >
             <img
@@ -3107,26 +3105,26 @@ function ClientStrip() {
                 display: "block",
               }}
             />
-            {/* overlay uniforme leggero */}
+            {/* overlay editoriale — più scuro per look premium */}
             <div style={{
               position: "absolute", inset: 0,
-              background: "rgba(14,12,8,0.45)",
+              background: "rgba(14,12,8,0.52)",
             }} />
-            {/* logo centrato */}
+            {/* nome cliente centrato */}
             <div style={{
               position: "absolute", inset: 0,
               display: "flex", alignItems: "center", justifyContent: "center",
-              padding: "0 20px",
+              padding: "0 24px",
             }}>
               <span style={{
                 fontFamily: "Bricolage Grotesque, system-ui, sans-serif",
                 fontWeight: 600,
-                fontSize: "clamp(14px, 1.4vw, 22px)",
-                letterSpacing: "0.01em",
+                fontSize: "clamp(15px, 1.5vw, 24px)",
+                letterSpacing: "-0.01em",
                 lineHeight: 1.15,
                 color: "#f3efe7",
                 textAlign: "center",
-                textShadow: "0 2px 12px rgba(0,0,0,0.6)",
+                textShadow: "0 2px 16px rgba(0,0,0,0.7)",
               }}>{item.logo}</span>
             </div>
           </div>
