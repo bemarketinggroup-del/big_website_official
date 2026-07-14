@@ -666,10 +666,6 @@
 
 </script>
 
-<!-- React + Babel -->
-<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
-<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 <!-- Gestione centralizzata immagini — vedi /data/images.js per sostituirle -->
 <script src="data/images.js"></script>
 
@@ -1247,6 +1243,12 @@ function cmsSlot(cms, slug) {
 function cmsText(cms, slug, field, fallback) {
   const value = cmsSlot(cms, slug)[field];
   return value ? value : fallback;
+}
+
+function cmsItems(cms, slug, field, fallback = []) {
+  const value = cmsSlot(cms, slug)[field];
+  if (!value) return fallback;
+  return String(value).split(/\n|\|/).map((item) => item.trim()).filter(Boolean);
 }
 
 /* Numbered section header — "01. CHI SIAMO" */
@@ -1828,7 +1830,10 @@ function About({ cms = {} }) {
     { name: "Food", desc: "Food & Beverage", id: "about-food", src: cmsText(cms, "home.about.vertical.3", "image_url", "assets/images/portfolio/zest_restaurant-800.webp"), line: cmsText(cms, "home.about.vertical.3", "body", "Storytelling e visual per ristoranti e brand del gusto.") },
     { name: "Personal brand", desc: "Founder & Creator", id: "about-personal", src: cmsText(cms, "home.about.vertical.4", "image_url", "assets/images/portfolio/costiera_gin-800.webp"), line: cmsText(cms, "home.about.vertical.4", "body", "Posizionamento e crescita per founder e creator.") },
   ];
-  const stats = [[50, "brand seguiti"], [6, "anni di lavoro"], [4, "settori verticali"], [1, "unico partner"]];
+  const stats = [[50, "brand seguiti"], [6, "anni di lavoro"], [4, "settori verticali"], [1, "unico partner"]].map(([number, label], index) => {
+    const slot = cmsSlot(cms, `home.about.stat.${index + 1}`);
+    return [Number.parseInt(slot.title, 10) || number, slot.subtitle || label];
+  });
   return (
     <section id="chi-siamo" style={{
       background: "var(--bg-deep)", color: "#f3efe7",
@@ -1843,10 +1848,10 @@ function About({ cms = {} }) {
             margin: 0, fontFamily: "Bricolage Grotesque", fontWeight: 400,
             fontSize: "clamp(26px, 3.4vw, 52px)", lineHeight: 1.1, letterSpacing: "-0.02em", textWrap: "pretty",
           }}>
-            Siamo un team di marketer, creativi e produttori. Diamo forma a brand che vogliono <span className="serif-i" style={{ color: "var(--accent)" }}>distinguersi</span> — nell'hospitality, nel luxury, nel food, nel retail e nel personal brand.
+            {cmsText(cms, "home.about.copy", "title", "Siamo un team di marketer, creativi e produttori. Diamo forma a brand che vogliono distinguersi — nell'hospitality, nel luxury, nel food, nel retail e nel personal brand.")}
           </p>
           <p style={{ margin: "26px auto 0", maxWidth: 620, color: "rgba(243,239,231,0.7)", fontSize: 16, lineHeight: 1.6 }}>
-            Lavoriamo come un partner integrato: niente passaggi di mano, niente perdite in traduzione. La stessa squadra pensa la strategia, scrive il claim, gira il video, costruisce il sito e fa girare le campagne.
+            {cmsText(cms, "home.about.copy", "body", "Lavoriamo come un partner integrato: niente passaggi di mano, niente perdite in traduzione. La stessa squadra pensa la strategia, scrive il claim, gira il video, costruisce il sito e fa girare le campagne.")}
           </p>
         </Reveal>
 
@@ -1883,12 +1888,21 @@ function About({ cms = {} }) {
 }
 
 /* ============== SERVICES ============== */
-function Services() {
-  const list = [
+function Services({ cms = {} }) {
+  const defaults = [
     { id: "01", title: "Content Production", desc: "Contenuti di alta qualità per campagne pubblicitarie, corporate e brand identity.", tags: ["Shooting ADV", "Video & Foto", "Graphic Design & Branding", "Copywriting & Storytelling"] },
     { id: "02", title: "Digital Marketing & Social", desc: "Strategie di crescita digitale e advertising per visibilità e performance online.", tags: ["Gestione Social", "Meta · Google · TikTok Ads", "Email & Automation"] },
     { id: "03", title: "Web & Digital Experience", desc: "Soluzioni digitali avanzate per la presenza online e le performance dei brand.", tags: ["Web & E-commerce", "UX/UI Design", "SEO & Positioning", "Data & Tracking"] },
   ];
+  const list = defaults.map((service, index) => {
+    const slot = cmsSlot(cms, `home.service.${index + 1}`);
+    return {
+      ...service,
+      title: slot.title || service.title,
+      desc: slot.subtitle || service.desc,
+      tags: cmsItems(cms, `home.service.${index + 1}`, "body", service.tags),
+    };
+  });
   const [hover, setHover] = useState(null);
   return (
     <section id="servizi" style={{ padding: "clamp(60px,8vw,120px) 0 clamp(48px,7vw,100px)" }}>
@@ -1903,7 +1917,7 @@ function Services() {
             lineHeight: 0.95, letterSpacing: "-0.03em",
             maxWidth: 1100, textWrap: "balance",
           }}>
-            Tre aree, un unico <span className="serif-i" style={{ color: "var(--accent)" }}>linguaggio</span>.
+            {cmsText(cms, "home.services.heading", "title", "Tre aree, un unico linguaggio.")}
           </h2>
         </Reveal>
 
@@ -2094,7 +2108,7 @@ const PROJECT_PHOTOS = {
   "costiera-gin":             (_acc.clientCostieraGin       || {}).src || "assets/images/portfolio/costiera_gin-800.webp",
 };
 
-function Projects() {
+function Projects({ cms = {} }) {
   const [open, setOpen] = useState(null);
   const [isTouch, setIsTouch] = useState(true); // default true per evitare flash
   const hoverTimer = useRef(null);
@@ -2126,6 +2140,19 @@ function Projects() {
     setOpen(open === slug ? null : slug);
   };
 
+  const projects = PROJECT_LIST.map((project) => {
+    const slot = cmsSlot(cms, `home.project.${project.slug}`);
+    return {
+      ...project,
+      name: slot.title || project.name,
+      sector: slot.subtitle || project.sector,
+      brief: slot.body || project.brief,
+      image: slot.image_url || PROJECT_PHOTOS[project.slug] || null,
+      ctaLabel: slot.cta_label || "Scopri il progetto",
+      ctaUrl: slot.cta_url || `projects/${project.slug}.html`,
+    };
+  });
+
   return (
     <section id="lavori" style={{ padding: "60px 0 120px" }}>
       <SectionNumber n="03" label="Lavori selezionati" />
@@ -2141,7 +2168,7 @@ function Projects() {
             lineHeight: 0.95, letterSpacing: "-0.03em",
             maxWidth: 900, textWrap: "balance",
           }}>
-            Una <span className="serif-i" style={{ color: "var(--accent)" }}>selezione</span> di brand che abbiamo costruito.
+            {cmsText(cms, "home.projects.heading", "title", "Una selezione di brand che abbiamo costruito.")}
           </h2>
         </Reveal>
         <a href="#contatti" className="mono" data-cursor="hover" style={{
@@ -2153,8 +2180,8 @@ function Projects() {
       {/* lista accordion full-width — nessun max-width né padding laterale */}
       <div>
         <div style={{ borderTop: "1px solid var(--ink)" }}>
-          {PROJECT_LIST.map((p, i) => (
-            <AccordionRow key={p.slug} project={p} index={i} image={PROJECT_PHOTOS[p.slug] || null}
+          {projects.map((p, i) => (
+            <AccordionRow key={p.slug} project={p} index={i} image={p.image}
               isOpen={open === p.slug}
               onToggle={() => onRowToggle(p.slug)}
               onRowEnter={() => onRowEnter(p.slug)}
@@ -2237,12 +2264,12 @@ function AccordionRow({ project, index, isOpen, onToggle, onRowEnter, onRowLeave
                 <span key={si} className="mono" style={{ border: "1px solid rgba(243,239,231,0.32)", borderRadius: 999, padding: "6px 13px", color: ink }}>{s}</span>
               ))}
             </div>
-            <a href={`projects/${p.slug}.html`} data-cursor="hover" style={{
+            <a href={p.ctaUrl} data-cursor="hover" style={{
               marginTop: 4, alignSelf: "flex-start", display: "inline-flex", alignItems: "center", gap: 10,
               fontFamily: "Bricolage Grotesque", fontWeight: 500, fontSize: 16, color: ink,
               borderBottom: `1px solid ${ink}`, paddingBottom: 4,
             }}>
-              Scopri il progetto <span style={{ fontFamily: "Instrument Serif", fontSize: 22 }}>→</span>
+              {p.ctaLabel} <span style={{ fontFamily: "Instrument Serif", fontSize: 22 }}>→</span>
             </a>
           </div>
         </div>
@@ -2671,7 +2698,7 @@ function CalendlyModal({ url, onClose }) {
 }
 
 /* ============== CONTACT ============== */
-function Contact() {
+function Contact({ cms = {} }) {
   const [modalOpen, setModalOpen] = useState(false);
   const [calendlyUrl, setCalendlyUrl] = useState("");
   const [name, setName] = useState("");
@@ -2743,8 +2770,7 @@ function Contact() {
             lineHeight: 0.92, letterSpacing: "-0.04em",
             textWrap: "balance",
           }}>
-            Costruiamo qualcosa<br />
-            di buono <span className="serif-i" style={{ color: "var(--accent)" }}>insieme</span>?
+            <span style={{ whiteSpace: "pre-line" }}>{cmsText(cms, "home.contact.copy", "title", "Costruiamo qualcosa\ndi buono insieme?")}</span>
           </h2>
         </Reveal>
 
@@ -2842,7 +2868,7 @@ function Contact() {
               onMouseEnter={(e) => { e.currentTarget.style.opacity = "0.88"; e.currentTarget.style.transform = "translateY(-2px)"; }}
               onMouseLeave={(e) => { e.currentTarget.style.opacity = "1"; e.currentTarget.style.transform = "translateY(0)"; }}
             >
-              Prenota una consulenza
+              {cmsText(cms, "home.contact.copy", "cta_label", "Prenota una consulenza")}
               <span style={{ fontFamily: "Instrument Serif", fontSize: "1.3em", fontStyle: "italic", fontWeight: 400 }}>→</span>
             </button>
 
@@ -2856,7 +2882,14 @@ function Contact() {
 }
 
 /* ============== FOOTER ============== */
-function Footer() {
+function Footer({ cms = {} }) {
+  const email = cmsSlot(cms, "site.footer.contact");
+  const socials = [
+    ["Instagram", "#"], ["LinkedIn", "#"], ["Behance", "#"],
+  ].map(([label, url], index) => {
+    const slot = cmsSlot(cms, `site.footer.social.${index + 1}`);
+    return [slot.title || label, slot.cta_url || url];
+  });
   return (
     <footer data-on-dark="1" data-cursor-bg="accent" style={{
       background: "var(--accent)", color: "#fff",
@@ -2870,19 +2903,13 @@ function Footer() {
           paddingBottom: 60,
           borderBottom: "1px solid rgba(255,255,255,0.25)",
         }}>
-          <a href="mailto:info@bemarketinggroup.it" className="mono" data-cursor="hover">info@bemarketinggroup.it</a>
-          <a href="#" className="mono" data-cursor="hover" style={{ display: "inline-flex", alignItems: "baseline", gap: 8 }}>
-            Instagram
-            <span aria-hidden="true" style={{ fontFamily: 'system-ui, sans-serif', fontSize: 18, lineHeight: 1, textTransform: 'none', letterSpacing: 0, display: 'inline-block', transform: 'translateY(2px)' }}>↗</span>
-          </a>
-          <a href="#" className="mono" data-cursor="hover" style={{ display: "inline-flex", alignItems: "baseline", gap: 8 }}>
-            LinkedIn
-            <span aria-hidden="true" style={{ fontFamily: 'system-ui, sans-serif', fontSize: 18, lineHeight: 1, textTransform: 'none', letterSpacing: 0, display: 'inline-block', transform: 'translateY(2px)' }}>↗</span>
-          </a>
-          <a href="#" className="mono" data-cursor="hover" style={{ display: "inline-flex", alignItems: "baseline", gap: 8 }}>
-            Behance
-            <span aria-hidden="true" style={{ fontFamily: 'system-ui, sans-serif', fontSize: 18, lineHeight: 1, textTransform: 'none', letterSpacing: 0, display: 'inline-block', transform: 'translateY(2px)' }}>↗</span>
-          </a>
+          <a href={`mailto:${email.subtitle || "info@bemarketinggroup.it"}`} className="mono" data-cursor="hover">{email.subtitle || "info@bemarketinggroup.it"}</a>
+          {socials.map(([label, url]) => (
+            <a key={label} href={url} className="mono" data-cursor="hover" style={{ display: "inline-flex", alignItems: "baseline", gap: 8 }}>
+              {label}
+              <span aria-hidden="true" style={{ fontFamily: 'system-ui, sans-serif', fontSize: 18, lineHeight: 1, textTransform: 'none', letterSpacing: 0, display: 'inline-block', transform: 'translateY(2px)' }}>↗</span>
+            </a>
+          ))}
         </div>
 
         <div style={{ padding: "60px 0 40px", textAlign: "center" }}>
@@ -3207,12 +3234,12 @@ function App() {
         <Hero cms={cms} />
         <Sectors />
         <About cms={cms} />
-        <Services />
-        <Projects />
+        <Services cms={cms} />
+        <Projects cms={cms} />
         <ClientStrip />
         <BeviralSpotlight />
-        <Contact />
-        <Footer />
+        <Contact cms={cms} />
+        <Footer cms={cms} />
       </main>
 
       <TweaksPanel title="Tweaks · bmg">

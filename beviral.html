@@ -59,6 +59,12 @@ function cmsText(cms, slug, field, fallback) {
   return value ? value : fallback;
 }
 
+function cmsItems(cms, slug, field, fallback = []) {
+  const value = cmsSlot(cms, slug)[field];
+  if (!value) return fallback;
+  return String(value).split(/\n|\|/).map((item) => item.trim()).filter(Boolean);
+}
+
 /* ─────────────────────── shared primitives ─────────────────────── */
 function Reveal({ children, delay = 0, as: As = "div", style, className = "", ...rest }) {
   const ref = useRef(null);
@@ -348,8 +354,8 @@ function Hero({ cms = {} }) {
             {cmsText(cms, "beviral.hero.copy", "body", <>La divisione di BMG dedicata alla crescita <strong>organica</strong>, al personal branding e ai video che fanno <strong>copertura</strong>. Aiutiamo imprenditori, professionisti e aziende a diventare un punto di riferimento nel proprio settore.</>)}
           </p>
           <div style={{ display: "flex", gap: 12, marginTop: 28, flexWrap: "wrap" }}>
-            <a href="#cta" className="sticker" style={{ background: "var(--blue)", color: "#fff", borderColor: "var(--ink)", fontSize: 12, padding: "12px 22px" }}>
-              Lavoriamo insieme →
+            <a href={heroCopy.cta_url || "#cta"} className="sticker" style={{ background: "var(--blue)", color: "#fff", borderColor: "var(--ink)", fontSize: 12, padding: "12px 22px" }}>
+              {heroCopy.cta_label || "Lavoriamo insieme"} →
             </a>
             <a href="#metodo" className="sticker" style={{ background: "var(--yellow)", fontSize: 12, padding: "12px 22px" }}>
               ↓ Il metodo
@@ -538,7 +544,11 @@ function ServiziCard({ s, i }) {
 
 }
 
-function Servizi() {
+function Servizi({ cms = {} }) {
+  const services = SERVIZI.map((service, index) => {
+    const slot = cmsSlot(cms, `beviral.service.${index + 1}`);
+    return { ...service, title: slot.title || service.title, desc: slot.body || slot.subtitle || service.desc };
+  });
   return (
     <section id="servizi" style={{ padding: "60px 0 120px", position: "relative" }}>
       <div style={{ maxWidth: "var(--max)", margin: "0 auto", padding: "0 var(--pad)" }}>
@@ -554,7 +564,7 @@ function Servizi() {
             lineHeight: 0.95, letterSpacing: "-0.035em",
             maxWidth: 900, textWrap: "balance"
           }}>
-            Otto modi per <span className="underline-marker">farsi notare</span>.
+            {cmsText(cms, "beviral.services.heading", "title", "Otto modi per farsi notare.")}
           </h2>
           <span className="mono" style={{ color: "var(--ink-muted)" }}>tutti i servizi sotto un unico cappello</span>
         </Reveal>
@@ -564,7 +574,7 @@ function Servizi() {
           gridTemplateColumns: "repeat(4, 1fr)",
           gap: 28
         }}>
-          {SERVIZI.map((s, i) => <ServiziCard key={s.id} s={s} i={i} />)}
+          {services.map((s, i) => <ServiziCard key={s.id} s={s} i={i} />)}
         </div>
       </div>
     </section>);
@@ -580,7 +590,11 @@ const STEPS = [
 { n: "05", title: "Crescita & Iterazione", desc: "Pubblichiamo, analizziamo, miglioriamo. Misuriamo copertura, interazioni e richieste, e riallineiamo la strategia.", color: "var(--ink)" }];
 
 
-function Metodo() {
+function Metodo({ cms = {} }) {
+  const steps = STEPS.map((step, index) => {
+    const slot = cmsSlot(cms, `beviral.step.${index + 1}`);
+    return { ...step, title: slot.title || step.title, desc: slot.body || slot.subtitle || step.desc };
+  });
   return (
     <section id="metodo" style={{
       padding: "120px 0",
@@ -611,14 +625,12 @@ function Metodo() {
             lineHeight: 0.95, letterSpacing: "-0.04em",
             maxWidth: 1100, textWrap: "balance"
           }}>
-            Un metodo in <span style={{ color: "var(--yellow)" }}>5 step</span>.
-            <br />
-            <span style={{ color: "rgba(255,255,255,0.6)" }}>Niente magia.</span> <span className="serif-i" style={{ color: "var(--yellow)" }}>Solo lavoro</span>.
+            <span style={{ whiteSpace: "pre-line" }}>{cmsText(cms, "beviral.method.heading", "title", "Un metodo in 5 step.\nNiente magia. Solo lavoro.")}</span>
           </h2>
         </Reveal>
 
         <div style={{ marginTop: 80, display: "grid", gap: 32 }}>
-          {STEPS.map((s, i) => <StepRow key={s.n} step={s} i={i} />)}
+          {steps.map((s, i) => <StepRow key={s.n} step={s} i={i} />)}
         </div>
       </div>
     </section>);
@@ -720,7 +732,8 @@ function CalendlyModal({ url, onClose }) {
 }
 
 /* ─────────────────────── CTA / FORM ─────────────────────── */
-function Cta() {
+function Cta({ cms = {} }) {
+  const cta = cmsSlot(cms, "beviral.cta.copy");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [target, setTarget] = useState("");
@@ -802,9 +815,7 @@ function Cta() {
             lineHeight: 0.92, letterSpacing: "-0.04em",
             textWrap: "balance"
           }}>
-            Pronto a diventare il<br />
-            <span className="underline-marker">punto di riferimento</span> del<br />
-            tuo settore<span className="serif-i" style={{ color: "var(--blue)" }}>?</span>
+            <span style={{ whiteSpace: "pre-line" }}>{cta.title || "Pronto a diventare il\npunto di riferimento del\ntuo settore?"}</span>
           </h2>
         </Reveal>
 
@@ -852,7 +863,7 @@ function Cta() {
             }}
               onMouseEnter={(e) => { e.currentTarget.style.transform = "translate(-2px,-2px)"; e.currentTarget.style.boxShadow = "8px 8px 0 var(--ink)"; }}
               onMouseLeave={(e) => { e.currentTarget.style.transform = "none"; e.currentTarget.style.boxShadow = "6px 6px 0 var(--ink)"; }}>
-              Iniziamo a far rumore →
+              {cta.cta_label || "Iniziamo a far rumore"} →
             </button>
           </form>
         </Reveal>
@@ -887,7 +898,12 @@ function FormRow({ label, children }) {
 }
 
 /* ─────────────────────── FOOTER ─────────────────────── */
-function Footer() {
+function Footer({ cms = {} }) {
+  const footer = cmsSlot(cms, "beviral.footer.copy");
+  const socials = cmsItems(cms, "beviral.footer.copy", "body", ["Instagram::#", "TikTok::#", "LinkedIn::#"]).map((item) => {
+    const [label, url = "#"] = item.split("::").map((part) => part.trim());
+    return [label, url];
+  });
   return (
     <footer style={{
       background: "var(--blue)",
@@ -903,10 +919,8 @@ function Footer() {
           paddingBottom: 60,
           borderBottom: "1px solid rgba(255,255,255,0.3)"
         }}>
-          <a href="mailto:hello@beviral.it" className="mono">hello@beviral.it</a>
-          <a href="#" className="mono">Instagram ↗</a>
-          <a href="#" className="mono">TikTok ↗</a>
-          <a href="#" className="mono">LinkedIn ↗</a>
+          <a href={`mailto:${footer.subtitle || "hello@beviral.it"}`} className="mono">{footer.subtitle || "hello@beviral.it"}</a>
+          {socials.map(([label, url]) => <a key={label} href={url} className="mono">{label} ↗</a>)}
         </div>
 
         <div style={{ padding: "60px 0 40px", textAlign: "center" }}>
@@ -915,7 +929,7 @@ function Footer() {
             lineHeight: 0.82, letterSpacing: "-0.06em",
             color: "#fff"
           }}>
-            <img src="assets/images/logos/logo-beviral-white.png" alt="Beviral" draggable="false"
+            <img src={cmsText(cms, "beviral.asset.2", "image_url", "assets/images/logos/logo-beviral-white.png")} alt={cmsText(cms, "beviral.asset.2", "image_alt", "Beviral")} draggable="false"
               style={{ display: "block", width: "clamp(280px, 70vw, 860px)", height: "auto", margin: "0 auto" }} />
           </div>
           <a href="index.html" className="mono" style={{ marginTop: 24, display: "inline-flex", alignItems: "center", gap: 10, opacity: 0.92 }}>
@@ -971,7 +985,7 @@ function ttSrc(id, active) {
   return `https://www.tiktok.com/player/v1/${id}?${p.toString()}`;
 }
 
-function Phone({ item, play, live }) {
+function Phone({ item, play, live, frameSrc = "assets/images/beviral/iphone-frame.png" }) {
   const id = ttId(item.url);
   return (
     <div style={{ position: "relative", width: "var(--phw)", aspectRatio: "2134 / 4300" }}>
@@ -1002,18 +1016,23 @@ function Phone({ item, play, live }) {
         )}
       </div>
       {/* iPhone PNG frame on top — drop-shadow segue l'alpha del PNG (silhouette telefono) */}
-      <img src="assets/images/beviral/iphone-frame.png" alt="" aria-hidden="true" draggable="false"
+      <img src={frameSrc} alt="" aria-hidden="true" draggable="false"
         style={{ position: "absolute", inset: 0, width: "100%", height: "100%", zIndex: 2, pointerEvents: "none", userSelect: "none", filter: "drop-shadow(0 40px 80px rgba(10,10,20,0.5))" }} />
     </div>
   );
 }
 
-function VideoShowcase() {
+function VideoShowcase({ cms = {} }) {
   const [active, setActive] = useState(0);
   const [dir, setDir] = useState(1);          // direzione ultima navigazione: +1 destra, -1 sinistra
   const [isMobile, setIsMobile] = useState(false);
   const drag = useRef({ on: false, x0: 0 });
-  const total = TIKTOKS.length;
+  const videos = TIKTOKS.map((video, index) => {
+    const slot = cmsSlot(cms, `beviral.showreel.${index + 1}`);
+    return { client: slot.title || video.client, views: slot.subtitle || video.views, url: slot.cta_url || video.url };
+  });
+  const total = videos.length;
+  const frameSrc = cmsText(cms, "beviral.asset.7", "image_url", "assets/images/beviral/iphone-frame.png");
 
   // Navigazione infinita circolare — traccia anche la direzione
   const go = (n) => {
@@ -1080,16 +1099,16 @@ function VideoShowcase() {
   const caption = (
     <div style={{ textAlign: "center", marginTop: "clamp(26px, 4vw, 44px)" }}>
       <h3 style={{ margin: 0, fontFamily: "Bricolage Grotesque", fontWeight: 700, fontSize: "clamp(22px, 3vw, 36px)", letterSpacing: "-0.02em", lineHeight: 1 }}>
-        {TIKTOKS[active].client}
+        {videos[active].client}
       </h3>
-      {TIKTOKS[active].views && (
+      {videos[active].views && (
         <div className="mono" style={{ marginTop: 12, color: "var(--ink-muted)", display: "inline-flex", alignItems: "center", gap: 8 }}>
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7-11-7-11-7z"/><circle cx="12" cy="12" r="3"/></svg>
-          {TIKTOKS[active].views} visualizzazioni
+          {videos[active].views} visualizzazioni
         </div>
       )}
       <div style={{ display: "flex", gap: 8, justifyContent: "center", marginTop: 22, flexWrap: "wrap" }}>
-        {TIKTOKS.map((_, i) => (
+        {videos.map((_, i) => (
           <button key={i} onClick={() => go(i)} aria-label={`Video ${i + 1}`} style={{
             width: i === active ? 26 : 9, height: 9, borderRadius: 999, padding: 0, border: "none",
             background: i === active ? "var(--ink)" : "rgba(10,10,20,0.2)",
@@ -1136,7 +1155,7 @@ function VideoShowcase() {
               background: "transparent",
               willChange: "opacity",
             }}>
-              <Phone item={TIKTOKS[active]} play={true} live={true} />
+              <Phone item={videos[active]} play={true} live={true} frameSrc={frameSrc} />
             </div>
             {arrowBtn(-1)}
             {arrowBtn(1)}
@@ -1151,7 +1170,7 @@ function VideoShowcase() {
               position: "relative", width: "100%", maxWidth: 860, margin: "0 auto",
               height: "calc(var(--phw) * 2.06)", perspective: "1700px",
             }}>
-            {TIKTOKS.map((item, i) => {
+            {videos.map((item, i) => {
               const o = circOffset(i);
               return (
                 <div key={i} style={{
@@ -1160,7 +1179,7 @@ function VideoShowcase() {
                   transition: "transform .65s cubic-bezier(.33,1,.32,1), opacity .45s ease, filter .45s ease",
                   ...styleFor(o),
                 }}>
-                  <Phone item={item} play={o === 0} live={Math.abs(o) <= 1} />
+                  <Phone item={item} play={o === 0} live={Math.abs(o) <= 1} frameSrc={frameSrc} />
                   {Math.abs(o) === 1 && (
                     <button onClick={() => go(i)} aria-label={`Vai a ${item.client}`} style={{
                       position: "absolute", inset: 0, border: "none", background: "transparent",
@@ -1189,13 +1208,13 @@ function App() {
       <Nav />
       <main>
         <Hero cms={cms} />
-        <VideoShowcase />
+        <VideoShowcase cms={cms} />
         <PopMarquee />
         <Manifesto />
-        <Servizi />
-        <Metodo />
-        <Cta />
-        <Footer />
+        <Servizi cms={cms} />
+        <Metodo cms={cms} />
+        <Cta cms={cms} />
+        <Footer cms={cms} />
       </main>
       <StickerBomb />
     </>);
