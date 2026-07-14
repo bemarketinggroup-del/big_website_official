@@ -54,6 +54,42 @@
     }));
   }
 
+  function renderVideo(tile, source) {
+    if (!tile || !source) return;
+    const empty = tile.querySelector(".vt-empty");
+    if (empty) empty.hidden = true;
+    let video = tile.querySelector("video[data-cms-video]");
+    if (!video) {
+      video = document.createElement("video");
+      video.dataset.cmsVideo = "true";
+      video.controls = true;
+      video.muted = true;
+      video.loop = true;
+      video.playsInline = true;
+      tile.append(video);
+    }
+    video.src = projectAsset(source);
+  }
+
+  function updateSeo(seo, fallbackTitle) {
+    if (!seo) return;
+    if (seo.title) document.title = seo.title;
+    const ensureMeta = (selector, attribute, key, value) => {
+      if (!value) return;
+      let meta = document.head.querySelector(selector);
+      if (!meta) {
+        meta = document.createElement("meta");
+        meta.setAttribute(attribute, key);
+        document.head.append(meta);
+      }
+      meta.content = value;
+    };
+    ensureMeta('meta[name="description"]', "name", "description", seo.subtitle);
+    ensureMeta('meta[property="og:title"]', "property", "og:title", seo.title || fallbackTitle);
+    ensureMeta('meta[property="og:description"]', "property", "og:description", seo.subtitle);
+    ensureMeta('meta[property="og:image"]', "property", "og:image", projectAsset(seo.image_url));
+  }
+
   function hydrateProject(cms) {
     const slug = projectSlug();
     if (!slug) return;
@@ -63,6 +99,8 @@
     const story = cms[`project.${slug}.story`] || {};
     const services = cms[`project.${slug}.services`] || {};
     const cta = cms[`project.${slug}.cta`] || {};
+    const video = cms[`project.${slug}.video.1`] || {};
+    const seo = cms[`project.${slug}.seo`] || {};
 
     text(document.querySelector("h1"), hero.title);
     text(document.querySelector(".eyebrow .mono"), hero.subtitle);
@@ -87,6 +125,8 @@
       if (image.image_alt) slot.setAttribute("aria-label", image.image_alt);
     }
 
+    renderVideo(document.querySelector(".video-tile"), video.cta_url);
+
     const ctaHeading = document.querySelector(".cta h2");
     const ctaPrimary = document.querySelector(".cta .btn-primary");
     text(ctaHeading, cta.title);
@@ -95,7 +135,8 @@
       if (cta.cta_label) ctaPrimary.firstChild.textContent = `${cta.cta_label} `;
     }
 
-    if (hero.title) document.title = `${hero.title} — Case study · BMG`;
+    updateSeo(seo, hero.title ? `${hero.title} - Case study BMG` : document.title);
+    if (!seo.title && hero.title) document.title = `${hero.title} - Case study BMG`;
   }
 
   document.querySelectorAll('a[href^="index.html#"]').forEach((link) => {
