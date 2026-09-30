@@ -303,6 +303,69 @@ body.showcase-lightbox-open { overflow: hidden; }
   .contact h2 { margin: 38px 0 58px; font-size: clamp(50px, 5.8vw, 94px); }
 }
 
+@media (min-width: 901px) and (max-width: 1440px), (min-width: 901px) and (max-height: 850px) {
+  /* Desktop compatto: proporzioni pensate per notebook e finestre non massimizzate. */
+  .hero { min-height: 100svh; padding-top: clamp(122px, 16vh, 154px); padding-bottom: 32px; }
+  .hero h1 { max-width: 1120px; font-size: clamp(54px, 6.35vw, 92px); line-height: .92; }
+  .hero-bottom p { max-width: 510px; font-size: clamp(16px, 1.25vw, 20px); }
+  .manifesto-copy { bottom: 5vh; gap: 25px; }
+  .manifesto-copy p { max-width: 1060px; font-size: clamp(48px, 5.75vw, 84px); }
+
+  .about { padding-top: 76px; padding-bottom: 76px; }
+  .about-intro h2 { font-size: clamp(46px, 4.8vw, 72px); }
+  .about-lead { max-width: 700px; margin-top: 28px; font-size: clamp(19px, 1.65vw, 25px); }
+  .about-copy { margin-top: 20px; }
+  .focus-list { margin-top: 52px; }
+  .focus-row { padding: 22px 0; }
+  .focus-row h3 { font-size: clamp(27px, 2.35vw, 36px); }
+  .stats { margin-top: 40px; padding-top: 26px; }
+
+  .work .section-head { min-height: min(86svh, 720px); padding-top: 82px; padding-bottom: 58px; }
+  .work .section-head h2 { max-width: 1000px; font-size: clamp(46px, 5vw, 76px); }
+  .project-meta strong { max-width: 960px; font-size: clamp(50px, 6vw, 88px); }
+
+  .services { padding-top: 78px; padding-bottom: 88px; }
+  .services-layout { gap: clamp(56px, 7vw, 100px); }
+  .services-intro { top: 86px; }
+  .services-intro .section-index { margin-bottom: 44px; }
+  .services-intro h2 { font-size: clamp(46px, 4.7vw, 70px); }
+  .service-panel { min-height: min(66svh, 520px); padding: 28px; }
+  .service-panel-copy { padding: 36px 0; }
+  .service-panel-copy h3 { font-size: clamp(42px, 4.3vw, 64px); }
+
+  .project-showcase { padding-top: 72px; padding-bottom: 58px; }
+  .showcase-head { margin-bottom: 38px; }
+  .showcase-head .section-index { margin-bottom: 18px; }
+  .showcase-head h2 { font-size: clamp(44px, 4.8vw, 72px); }
+  .showcase-card { height: min(52svh, 460px); }
+  .showcase-card--landscape { width: min(54vw, 720px); }
+  .showcase-card--portrait { width: min(30vw, 400px); }
+  .showcase-card--square { width: min(36vw, 500px); }
+  .showcase-progress { margin-top: 20px; }
+
+  .clients { min-height: min(90svh, 720px); padding-top: 72px; padding-bottom: 68px; }
+  .clients-head { gap: 22px; margin-bottom: 44px; }
+  .clients-head h2 { max-width: 780px; font-size: clamp(44px, 4.8vw, 72px); }
+  .logo-grid > a, .logo-grid > div { height: 80px; }
+  .logo-grid img { max-height: 66px; }
+
+  .beviral { min-height: min(72svh, 650px); gap: clamp(52px, 7vw, 100px); padding-top: 42px; padding-bottom: 52px; }
+  .beviral-copy h2 { font-size: clamp(38px, 3.9vw, 58px); }
+  .beviral-copy p { margin: 24px 0; font-size: 17px; }
+
+  .contact { padding-top: 38px; padding-bottom: 40px; }
+  .contact h2 { max-width: 820px; margin: 22px 0 30px; font-size: clamp(42px, 4.5vw, 66px); }
+  .contact-layout { gap: clamp(52px, 7vw, 96px); }
+  .contact-copy p { margin-bottom: 24px; font-size: 16px; }
+  .contact-mail { font-size: clamp(18px, 1.55vw, 24px); }
+  .contact-form { gap: 13px; }
+  .contact-form label { gap: 4px; }
+  .contact-form input, .contact-form select, .contact-form textarea { padding-bottom: 7px; font-size: 17px; }
+  .contact-form textarea { min-height: 50px; }
+  .contact-form-bottom small { font-size: 12px; }
+  .contact-form button { min-height: 44px; padding-inline: 19px; }
+}
+
 @media (max-width: 900px) {
   .hero { min-height: 840px; }
   .hero h1 { font-size: clamp(58px, 12.5vw, 105px); }
