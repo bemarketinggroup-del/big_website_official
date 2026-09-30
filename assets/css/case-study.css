@@ -125,6 +125,7 @@ button { color: inherit; font: inherit; }
 .media-grid.is-carousel .gallery-track .media-slot--d { width: clamp(520px, 62vw, 900px); aspect-ratio: 4 / 3; }
 .media-grid.is-carousel .gallery-track .media-slot--e { width: clamp(360px, 43vw, 620px); aspect-ratio: 1 / 1; }
 .media-grid.is-carousel .gallery-track .media-slot--f { width: clamp(560px, 66vw, 980px); aspect-ratio: 16 / 10; }
+.media-grid.is-carousel .gallery-track .media-slot[data-photo-format] { width: auto; height: min(52svh, 480px); aspect-ratio: var(--photo-ratio); }
 .media-grid.is-carousel .gallery-track .reveal { opacity: 1; transform: none; transition: none; }
 .gallery-caption { position: absolute; z-index: 2; right: 82px; bottom: 28px; left: 28px; color: #fff; font-size: 13px; line-height: 1.25; text-align: left; text-shadow: 0 1px 18px rgba(0,0,0,.65); opacity: .78; }
 .gallery-tools { display: flex; align-items: center; justify-content: space-between; gap: 24px; margin: 0 var(--pad) 24px; }

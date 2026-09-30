@@ -1,0 +1,616 @@
+{
+  "source": "FOTO X SITO BMG",
+  "reviewed_photos": 116,
+  "selection": [
+    {
+      "client": "Bellevue Syrene",
+      "source": "BELLEVUE/UUU_0924.jpg",
+      "asset": "assets/images/clients/bellevue-syrene/photo-05-full.webp",
+      "uses": [
+        "cover"
+      ],
+      "caption": "Un tavolo tra le colonne, di fronte al Vesuvio"
+    },
+    {
+      "client": "Bellevue Syrene",
+      "source": "BELLEVUE/26 MAGGIO 1 (1).JPG",
+      "asset": "assets/images/clients/bellevue-syrene/photo-02-full.webp",
+      "uses": [
+        "hero"
+      ],
+      "caption": "Il colonnato affacciato sul golfo"
+    },
+    {
+      "client": "Bellevue Syrene",
+      "source": "BELLEVUE/UUU_2987.jpg",
+      "asset": "assets/images/clients/bellevue-syrene/photo-07-full.webp",
+      "uses": [
+        "feature"
+      ],
+      "caption": "Il salotto sotto la luce naturale"
+    },
+    {
+      "client": "Bellevue Syrene",
+      "source": "BELLEVUE/UUU_3984.JPG",
+      "asset": "assets/images/clients/bellevue-syrene/photo-09-full.webp",
+      "uses": [
+        "showcase"
+      ],
+      "caption": "L'ingresso nel giardino mediterraneo"
+    },
+    {
+      "client": "Bellevue Syrene",
+      "source": "BELLEVUE/25 aprile 1 (1).JPG",
+      "asset": "assets/images/clients/bellevue-syrene/photo-01-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Colazione sulla terrazza vista mare"
+    },
+    {
+      "client": "Bellevue Syrene",
+      "source": "BELLEVUE/DJI_20260717105738_0726_D.JPG",
+      "asset": "assets/images/clients/bellevue-syrene/photo-03-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Bellevue Syrene e la costa di Sorrento"
+    },
+    {
+      "client": "Bellevue Syrene",
+      "source": "BELLEVUE/ultima 23 gen (1).jpg",
+      "asset": "assets/images/clients/bellevue-syrene/photo-04-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Ospitalità tra i colori della villa"
+    },
+    {
+      "client": "Bellevue Syrene",
+      "source": "BELLEVUE/UUU_1069 (1).jpg",
+      "asset": "assets/images/clients/bellevue-syrene/photo-06-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Dettagli del salone storico"
+    },
+    {
+      "client": "Bellevue Syrene",
+      "source": "BELLEVUE/UUU_3078.jpg",
+      "asset": "assets/images/clients/bellevue-syrene/photo-08-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "La terrazza tra giardino e mare"
+    },
+    {
+      "client": "Bellevue Syrene",
+      "source": "BELLEVUE/UUU_6088.JPG",
+      "asset": "assets/images/clients/bellevue-syrene/photo-10-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Il mare attraverso le tende"
+    },
+    {
+      "client": "Bellevue Syrene",
+      "source": "BELLEVUE/UUU_6734.jpg",
+      "asset": "assets/images/clients/bellevue-syrene/photo-11-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "La colazione servita in camera"
+    },
+    {
+      "client": "Bellevue Syrene",
+      "source": "BELLEVUE/UUU_6777 (1).jpg",
+      "asset": "assets/images/clients/bellevue-syrene/photo-12-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Un momento nella suite affrescata"
+    },
+    {
+      "client": "Bellevue Syrene",
+      "source": "BELLEVUE/UUU_9411.JPG",
+      "asset": "assets/images/clients/bellevue-syrene/photo-13-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Il salone e i suoi dettagli"
+    },
+    {
+      "client": "Vetera Matera",
+      "source": "VETERA/Copia di vetera 3-01.jpg",
+      "asset": "assets/images/clients/vetera-matera/photo-11-full.webp",
+      "uses": [
+        "cover"
+      ],
+      "caption": "La terrazza e il riflesso dei Sassi"
+    },
+    {
+      "client": "Vetera Matera",
+      "source": "VETERA/UUU_6560 (1).JPG",
+      "asset": "assets/images/clients/vetera-matera/photo-18-full.webp",
+      "uses": [
+        "hero"
+      ],
+      "caption": "I tavoli della terrazza affacciati su Matera"
+    },
+    {
+      "client": "Vetera Matera",
+      "source": "VETERA/24 APRILE (4).JPG",
+      "asset": "assets/images/clients/vetera-matera/photo-05-full.webp",
+      "uses": [
+        "feature"
+      ],
+      "caption": "Il salotto scavato nella pietra"
+    },
+    {
+      "client": "Vetera Matera",
+      "source": "VETERA/UUU_6404 (2).JPG",
+      "asset": "assets/images/clients/vetera-matera/photo-14-full.webp",
+      "uses": [
+        "showcase"
+      ],
+      "caption": "Un passaggio nella pietra"
+    },
+    {
+      "client": "Vetera Matera",
+      "source": "VETERA/20 MARZO (10).jpg",
+      "asset": "assets/images/clients/vetera-matera/photo-02-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Il cortile tra pietra e verde"
+    },
+    {
+      "client": "Vetera Matera",
+      "source": "VETERA/20 marzo (9).jpg",
+      "asset": "assets/images/clients/vetera-matera/photo-03-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "La pietra dei Sassi, da vicino"
+    },
+    {
+      "client": "Vetera Matera",
+      "source": "VETERA/3 MAGGIO1 (2).JPG",
+      "asset": "assets/images/clients/vetera-matera/photo-06-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Il cortile illuminato la sera"
+    },
+    {
+      "client": "Vetera Matera",
+      "source": "VETERA/_82A0355.jpg",
+      "asset": "assets/images/clients/vetera-matera/photo-07-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "La terrazza nel cuore dei Sassi"
+    },
+    {
+      "client": "Vetera Matera",
+      "source": "VETERA/appoggio (2).JPG",
+      "asset": "assets/images/clients/vetera-matera/photo-08-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Luce calda negli spazi interni"
+    },
+    {
+      "client": "Vetera Matera",
+      "source": "VETERA/Copia di 7 GENNAIO.jpeg",
+      "asset": "assets/images/clients/vetera-matera/photo-09-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Tetti e terrazze di Matera"
+    },
+    {
+      "client": "Vetera Matera",
+      "source": "VETERA/DJI_20251008160405_0167_D.jpg",
+      "asset": "assets/images/clients/vetera-matera/photo-12-full.webp",
+      "uses": [
+        "gallery",
+        "home-vision"
+      ],
+      "caption": "Vetera e il paesaggio di Matera"
+    },
+    {
+      "client": "Vetera Matera",
+      "source": "VETERA/UUU_6233 (1).JPG",
+      "asset": "assets/images/clients/vetera-matera/photo-13-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Un aperitivo con vista sui Sassi"
+    },
+    {
+      "client": "Vetera Matera",
+      "source": "VETERA/UUU_6537.JPG",
+      "asset": "assets/images/clients/vetera-matera/photo-16-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "L'arco e la facciata di Vetera"
+    },
+    {
+      "client": "Vetera Matera",
+      "source": "VETERA/UUU_6539 (1).JPG",
+      "asset": "assets/images/clients/vetera-matera/photo-17-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Il profilo dei Sassi nel paesaggio"
+    },
+    {
+      "client": "Grand Hotel Aminta",
+      "source": "AMINTA/11 AGOSTO.jpg",
+      "asset": "assets/images/clients/grand-hotel-aminta/photo-09-full.webp",
+      "uses": [
+        "cover"
+      ],
+      "caption": "Il Grand Hotel Aminta sopra Sorrento"
+    },
+    {
+      "client": "Grand Hotel Aminta",
+      "source": "AMINTA/10 GIUGNO.jpg",
+      "asset": "assets/images/clients/grand-hotel-aminta/photo-07-full.webp",
+      "uses": [
+        "hero"
+      ],
+      "caption": "La terrazza al tramonto"
+    },
+    {
+      "client": "Grand Hotel Aminta",
+      "source": "AMINTA/10 GIUGNO(1).jpg",
+      "asset": "assets/images/clients/grand-hotel-aminta/photo-06-full.webp",
+      "uses": [
+        "feature"
+      ],
+      "caption": "Gli interni dai toni mediterranei"
+    },
+    {
+      "client": "Grand Hotel Aminta",
+      "source": "AMINTA/8 LUGLIO DAFNE.jpg",
+      "asset": "assets/images/clients/grand-hotel-aminta/photo-19-full.webp",
+      "uses": [
+        "showcase"
+      ],
+      "caption": "La terrazza nell'ora blu"
+    },
+    {
+      "client": "Grand Hotel Aminta",
+      "source": "AMINTA/08 SETTEMBRE.jpg",
+      "asset": "assets/images/clients/grand-hotel-aminta/photo-03-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Un cocktail a bordo piscina"
+    },
+    {
+      "client": "Grand Hotel Aminta",
+      "source": "AMINTA/1 LUGLIO DAFNE.jpg",
+      "asset": "assets/images/clients/grand-hotel-aminta/photo-04-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "La tavola e i sapori del Mediterraneo"
+    },
+    {
+      "client": "Grand Hotel Aminta",
+      "source": "AMINTA/1 LUGLIO.jpg",
+      "asset": "assets/images/clients/grand-hotel-aminta/photo-05-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Il salotto e la libreria"
+    },
+    {
+      "client": "Grand Hotel Aminta",
+      "source": "AMINTA/10 SETTEMBRE.jpg",
+      "asset": "assets/images/clients/grand-hotel-aminta/photo-08-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "La scala e i suoi dettagli"
+    },
+    {
+      "client": "Grand Hotel Aminta",
+      "source": "AMINTA/13 GIUGNO DAFNE.jpg",
+      "asset": "assets/images/clients/grand-hotel-aminta/photo-10-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Il servizio a tavola"
+    },
+    {
+      "client": "Grand Hotel Aminta",
+      "source": "AMINTA/14 LUGLIO AMINTA.jpg",
+      "asset": "assets/images/clients/grand-hotel-aminta/photo-11-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Luce e arredi negli spazi comuni"
+    },
+    {
+      "client": "Grand Hotel Aminta",
+      "source": "AMINTA/18 LUGLIO DAFNE.jpg",
+      "asset": "assets/images/clients/grand-hotel-aminta/photo-13-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Un dettaglio della cucina"
+    },
+    {
+      "client": "Grand Hotel Aminta",
+      "source": "AMINTA/19 GIUGNO.jpg",
+      "asset": "assets/images/clients/grand-hotel-aminta/photo-14-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "La colazione, servita con cura"
+    },
+    {
+      "client": "Grand Hotel Aminta",
+      "source": "AMINTA/22 AGOSTO (8).jpg",
+      "asset": "assets/images/clients/grand-hotel-aminta/photo-15-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "La vista sul golfo"
+    },
+    {
+      "client": "Grand Hotel Aminta",
+      "source": "AMINTA/24 GIUGNO DAFNE.jpg",
+      "asset": "assets/images/clients/grand-hotel-aminta/photo-17-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Il servizio flambé"
+    },
+    {
+      "client": "Grand Hotel Aminta",
+      "source": "AMINTA/7 LUGLIO.jpg",
+      "asset": "assets/images/clients/grand-hotel-aminta/photo-18-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "La preparazione di un cocktail"
+    },
+    {
+      "client": "Grand Hotel Aminta",
+      "source": "AMINTA/Copia di 13 GIUGNO (1).jpg",
+      "asset": "assets/images/clients/grand-hotel-aminta/photo-20-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Una camera nei colori della costa"
+    },
+    {
+      "client": "Grand Hotel Aminta",
+      "source": "AMINTA/UUU_1542.jpg",
+      "asset": "assets/images/clients/grand-hotel-aminta/photo-21-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Un momento in piscina, di fronte al Vesuvio"
+    },
+    {
+      "client": "Grand Hotel La Favorita",
+      "source": "FAVORITA/UUU_5047.JPG",
+      "asset": "assets/images/clients/grand-hotel-la-favorita/photo-13-full.webp",
+      "uses": [
+        "cover"
+      ],
+      "caption": "Il giardino del Grand Hotel La Favorita"
+    },
+    {
+      "client": "Grand Hotel La Favorita",
+      "source": "FAVORITA/pool (2).JPG",
+      "asset": "assets/images/clients/grand-hotel-la-favorita/photo-04-full.webp",
+      "uses": [
+        "hero"
+      ],
+      "caption": "Il rooftop con piscina e vista mare"
+    },
+    {
+      "client": "Grand Hotel La Favorita",
+      "source": "FAVORITA/UUU_5028.JPG",
+      "asset": "assets/images/clients/grand-hotel-la-favorita/photo-12-full.webp",
+      "uses": [
+        "feature"
+      ],
+      "caption": "Maioliche e limoni nel giardino"
+    },
+    {
+      "client": "Grand Hotel La Favorita",
+      "source": "FAVORITA/UUU_4797.JPG",
+      "asset": "assets/images/clients/grand-hotel-la-favorita/photo-07-full.webp",
+      "uses": [
+        "showcase"
+      ],
+      "caption": "La tavola sotto il pergolato di limoni"
+    },
+    {
+      "client": "Grand Hotel La Favorita",
+      "source": "FAVORITA/2 24aprile.JPG",
+      "asset": "assets/images/clients/grand-hotel-la-favorita/photo-01-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "La piscina sui tetti di Sorrento"
+    },
+    {
+      "client": "Grand Hotel La Favorita",
+      "source": "FAVORITA/28.jpg",
+      "asset": "assets/images/clients/grand-hotel-la-favorita/photo-02-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Il mosaico del giardino"
+    },
+    {
+      "client": "Grand Hotel La Favorita",
+      "source": "FAVORITA/Senza titolo-5 (1).JPG",
+      "asset": "assets/images/clients/grand-hotel-la-favorita/photo-05-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Un matrimonio davanti alla facciata dell'hotel"
+    },
+    {
+      "client": "Grand Hotel La Favorita",
+      "source": "FAVORITA/UUU_4860.JPG",
+      "asset": "assets/images/clients/grand-hotel-la-favorita/photo-09-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "La facciata tra i limoni"
+    },
+    {
+      "client": "Grand Hotel La Favorita",
+      "source": "FAVORITA/UUU_5020.JPG",
+      "asset": "assets/images/clients/grand-hotel-la-favorita/photo-10-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "L'ingresso e il pergolato"
+    },
+    {
+      "client": "Grand Hotel La Favorita",
+      "source": "FAVORITA/UUU_5027.JPG",
+      "asset": "assets/images/clients/grand-hotel-la-favorita/photo-11-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Una seduta nel giardino mediterraneo"
+    },
+    {
+      "client": "Grand Hotel La Favorita",
+      "source": "FAVORITA/UUU_5053.JPG",
+      "asset": "assets/images/clients/grand-hotel-la-favorita/photo-14-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Gli spazi all'aperto tra le piante"
+    },
+    {
+      "client": "Grand Hotel La Favorita",
+      "source": "FAVORITA/UUU_5175.JPG",
+      "asset": "assets/images/clients/grand-hotel-la-favorita/photo-15-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Il salone e il lampadario"
+    },
+    {
+      "client": "Zest Sorrento",
+      "source": "ZEST/UUU_5294 (1).JPG",
+      "asset": "assets/images/clients/zest-restaurant/photo-04-full.webp",
+      "uses": [
+        "cover"
+      ],
+      "caption": "La sala all'aperto, di sera"
+    },
+    {
+      "client": "Zest Sorrento",
+      "source": "ZEST/UUU_8783 (2).jpg",
+      "asset": "assets/images/clients/zest-restaurant/photo-08-full.webp",
+      "uses": [
+        "hero"
+      ],
+      "caption": "La composizione di un piatto"
+    },
+    {
+      "client": "Zest Sorrento",
+      "source": "ZEST/location.JPG",
+      "asset": "assets/images/clients/zest-restaurant/photo-03-full.webp",
+      "uses": [
+        "feature"
+      ],
+      "caption": "La sala di Zest, tra luci e verde"
+    },
+    {
+      "client": "Zest Sorrento",
+      "source": "ZEST/UUU_8820 (1).jpg",
+      "asset": "assets/images/clients/zest-restaurant/photo-11-full.webp",
+      "uses": [
+        "showcase"
+      ],
+      "caption": "Un dettaglio del risotto"
+    },
+    {
+      "client": "Zest Sorrento",
+      "source": "ZEST/25_06 -2.JPG",
+      "asset": "assets/images/clients/zest-restaurant/photo-01-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Un dettaglio della cucina di Zest"
+    },
+    {
+      "client": "Zest Sorrento",
+      "source": "ZEST/25_06.JPG",
+      "asset": "assets/images/clients/zest-restaurant/photo-02-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Il piatto firmato Zest"
+    },
+    {
+      "client": "Zest Sorrento",
+      "source": "ZEST/UUU_5396 (1).JPG",
+      "asset": "assets/images/clients/zest-restaurant/photo-06-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Pasta, erbe e dettagli"
+    },
+    {
+      "client": "Zest Sorrento",
+      "source": "ZEST/UUU_5413.JPG",
+      "asset": "assets/images/clients/zest-restaurant/photo-07-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "La mise en place e il pane"
+    },
+    {
+      "client": "Zest Sorrento",
+      "source": "ZEST/UUU_8797.jpg",
+      "asset": "assets/images/clients/zest-restaurant/photo-10-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Il piatto, pronto per il servizio"
+    },
+    {
+      "client": "Grand Hotel Europa Palace",
+      "source": "EUROPA/DJI_20260622170305_0522_D (1).JPG",
+      "asset": "assets/images/clients/europa-palace/photo-04-full.webp",
+      "uses": [
+        "showcase"
+      ],
+      "caption": "Il pontile e la piscina affacciati sul mare"
+    },
+    {
+      "client": "Artema Matera",
+      "source": "ARTEMA/UUU_0704.jpg",
+      "asset": "assets/images/clients/artema-matera/photo-18-full.webp",
+      "uses": [
+        "showcase"
+      ],
+      "caption": "La cura del piatto, al momento del servizio"
+    }
+  ],
+  "notes": [
+    "Copertine, aperture, immagini principali e caroselli usano fotografie distinte.",
+    "Home e landing mostrano una fotografia per ciascuno dei sette clienti forniti.",
+    "Europa Palace e Artema non hanno una pagina progetto nel sito attuale.",
+    "Per Costiera Gin non è stato fornito nuovo materiale."
+  ]
+}
