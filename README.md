@@ -1,6 +1,6 @@
 # BMG — Be Marketing Group · Sito Web
 
-Sito statico HTML/CSS/JS con React (Babel standalone). Nessuna build necessaria.
+Sito statico HTML/CSS/JS, senza framework e senza fase di build.
 
 ---
 
@@ -38,13 +38,15 @@ python3 -m http.server 8080
 │   └── costiera-gin.html
 ├── assets/
 │   ├── css/
-│   │   ├── global.css      ← Variabili CSS, reset, keyframes, font
+│   │   ├── site.css        ← Homepage: design system, layout e responsive
+│   │   ├── global.css      ← Stili condivisi dalle pagine legacy
 │   │   ├── home.css        ← Stili specifici homepage
 │   │   ├── beviral.css     ← Stili pagina BeViral
 │   │   ├── projects.css    ← Stili pagine case study
 │   │   └── responsive.css  ← Tutti i breakpoint @media
 │   ├── js/
-│   │   └── image-slot.js   ← Web component drag-and-drop immagini
+│   │   ├── site.js         ← Interazioni progressive della homepage
+│   │   └── image-slot.js   ← Componente usato dalle pagine legacy
 │   └── images/
 │       ├── logos/          ← Logo BeViral blu e bianco
 │       ├── homepage/       ← Hero slideshow (PNG + video mobile)
@@ -83,11 +85,11 @@ bemarketinggroup.it
 
 | Tecnologia | Versione | Uso |
 |---|---|---|
-| React + ReactDOM | 18.3.1 | UI components |
-| Babel Standalone | 7.29.0 | Compila JSX nel browser |
-| CSS Custom Properties | — | Design tokens |
-| IntersectionObserver | — | Animazioni scroll |
-| Web Components | — | `<image-slot>` drag & drop |
+| HTML semantico | HTML5 | Struttura e accessibilità |
+| CSS Custom Properties | — | Design system e responsive |
+| JavaScript vanilla | ES2020+ | Header, parola variabile e reveal progressivi |
+| IntersectionObserver | — | Animazioni scroll progressive enhancement |
+| Phosphor Icons | 2.1.2 | Sistema di icone |
 
 ---
 
