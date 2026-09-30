@@ -104,15 +104,35 @@ em { color: var(--accent); font-family: var(--serif); font-weight: 400; }
 .marquee b { margin: 0 .48em; font-size: clamp(16px, 1.7vw, 30px); font-weight: 400; opacity: .7; }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
-.services { padding: 150px var(--pad) 160px; color: var(--paper-light); background: var(--ink); }
-.section-head--dark .section-index { color: #9c8e80; }
-.service-list { border-top: 1px solid rgba(255,255,255,.22); }
-.service-row { display: grid; grid-template-columns: 70px minmax(320px, 1fr) minmax(260px, .8fr); gap: 26px; align-items: center; padding: clamp(38px, 5vw, 76px) 0; border-bottom: 1px solid rgba(255,255,255,.22); }
-.service-row > span { color: #8f8378; }
-.service-row h3 { margin: 0; font-size: clamp(30px, 3.3vw, 62px); font-weight: 400; line-height: 1; letter-spacing: -.04em; }
-.service-row p { margin: 0; color: #a9a097; font-size: clamp(15px, 1.2vw, 20px); line-height: 1.42; }
-.service-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 20px; }
-.service-tags span { padding: 6px 10px; border: 1px solid rgba(255,255,255,.2); border-radius: 999px; color: #aaa199; font-family: var(--mono); font-size: 9px; letter-spacing: .06em; text-transform: uppercase; }
+.services { padding: 150px var(--pad) 170px; color: var(--paper-light); background: var(--ink); }
+.services-layout { display: grid; grid-template-columns: minmax(280px, .72fr) minmax(520px, 1.28fr); gap: clamp(70px, 10vw, 190px); align-items: start; }
+.services-intro { position: sticky; top: 130px; }
+.services-intro .section-index { display: block; margin-bottom: clamp(70px, 9vw, 150px); color: #9c8e80; }
+.services-intro h2 { margin: 0; font-size: clamp(58px, 6.6vw, 118px); font-weight: 400; line-height: .88; letter-spacing: -.06em; }
+.service-stack { display: grid; gap: 24px; }
+.service-panel { min-height: clamp(480px, 48vw, 690px); display: grid; grid-template-rows: auto 1fr auto; padding: clamp(28px, 3.5vw, 58px); }
+.service-panel--paper { color: var(--ink); background: var(--paper); }
+.service-panel--accent { color: #fff; background: var(--accent); }
+.service-panel--outline { border: 1px solid rgba(255,255,255,.28); color: var(--paper-light); background: #211d19; }
+.service-panel-top { display: flex; align-items: flex-start; justify-content: space-between; }
+.service-panel-top span { opacity: .66; }
+.service-panel-top i { font-size: clamp(32px, 3.4vw, 54px); font-weight: 300; }
+.service-panel-copy { align-self: center; padding: clamp(65px, 8vw, 120px) 0; }
+.service-panel-copy h3 { margin: 0 0 30px; font-size: clamp(52px, 6.2vw, 108px); font-weight: 400; line-height: .84; letter-spacing: -.065em; }
+.service-panel-copy p { max-width: 620px; margin: 0; font-size: clamp(17px, 1.45vw, 24px); line-height: 1.35; }
+.service-panel--paper .service-panel-copy p { color: #696158; }
+.service-panel--accent .service-panel-copy p { color: rgba(255,255,255,.82); }
+.service-panel--outline .service-panel-copy p { color: #aaa198; }
+.service-capabilities { display: grid; grid-template-columns: 1fr 1fr; margin: 0; padding: 0; list-style: none; border-top: 1px solid currentColor; }
+.service-capabilities li { position: relative; padding: 16px 18px 13px; border-bottom: 1px solid currentColor; font-family: var(--mono); font-size: 10px; letter-spacing: .07em; text-transform: uppercase; }
+.service-capabilities li:nth-child(odd) { padding-left: 0; border-right: 1px solid currentColor; }
+.service-capabilities li::before { content: ""; display: inline-block; width: 5px; height: 5px; margin: 0 10px 2px 0; border-radius: 50%; background: currentColor; opacity: .65; }
+.service-panel--paper .service-capabilities { border-color: rgba(23,19,15,.32); }
+.service-panel--paper .service-capabilities li { border-color: rgba(23,19,15,.32); }
+.service-panel--accent .service-capabilities { border-color: rgba(255,255,255,.45); }
+.service-panel--accent .service-capabilities li { border-color: rgba(255,255,255,.45); }
+.service-panel--outline .service-capabilities { border-color: rgba(255,255,255,.28); }
+.service-panel--outline .service-capabilities li { border-color: rgba(255,255,255,.28); }
 
 .clients { padding: 150px var(--pad) 130px; background: var(--paper); }
 .clients-head { display: grid; grid-template-columns: .65fr 1.35fr; gap: 30px; margin-bottom: clamp(80px, 9vw, 150px); }
@@ -181,8 +201,10 @@ em { color: var(--accent); font-family: var(--serif); font-weight: 400; }
   .section-head .section-index, .clients-head .section-index { margin-bottom: 28px; }
   .project-card, .project-card--wide { grid-column: span 6; }
   .project-card:nth-child(even) { transform: translateY(80px); }
-  .service-row { grid-template-columns: 50px 1fr; }
-  .service-row p { grid-column: 2; }
+  .services-layout { grid-template-columns: 1fr; gap: 80px; }
+  .services-intro { position: static; }
+  .services-intro .section-index { margin-bottom: 34px; }
+  .services-intro h2 { max-width: 720px; }
   .logo-grid { grid-template-columns: repeat(3, 1fr); }
   .contact-layout { grid-template-columns: 1fr; }
   .beviral { grid-template-columns: minmax(200px, .6fr) minmax(360px, 1.4fr); gap: 70px; }
@@ -216,9 +238,15 @@ em { color: var(--accent); font-family: var(--serif); font-weight: 400; }
   .project-card a, .project-card--portrait a { height: 128vw; max-height: 690px; }
   .project-meta { padding: 22px; }
   .project-meta strong { font-size: 28px; }
-  .service-row { grid-template-columns: 36px 1fr; gap: 14px; }
-  .service-row h3 { font-size: 31px; }
-  .service-row p { font-size: 15px; }
+  .services-layout { gap: 58px; }
+  .services-intro h2 { font-size: clamp(50px, 15vw, 72px); }
+  .service-stack { gap: 14px; }
+  .service-panel { min-height: 520px; padding: 25px 22px; }
+  .service-panel-copy { padding: 65px 0; }
+  .service-panel-copy h3 { margin-bottom: 24px; font-size: clamp(48px, 14vw, 66px); }
+  .service-panel-copy p { font-size: 17px; }
+  .service-capabilities li { padding: 14px 9px 12px; font-size: 8px; }
+  .service-capabilities li:nth-child(odd) { padding-left: 0; }
   .logo-grid { grid-template-columns: repeat(2, 1fr); gap: 24px 28px; }
   .logo-grid > a, .logo-grid > div { height: 90px; }
   .logo-grid img { max-width: 150px; max-height: 75px; }
