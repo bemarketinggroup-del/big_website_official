@@ -43,6 +43,48 @@
   const words = ["scelto.", "raccontato.", "ricordato."];
   const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  let pageScrollTween = null;
+  const scrollToSection = (target) => {
+    const scrollMargin = parseFloat(window.getComputedStyle(target).scrollMarginTop) || 0;
+    const destination = Math.max(0, target.getBoundingClientRect().top + window.scrollY - scrollMargin);
+
+    if (reduceMotion || !window.gsap) {
+      window.scrollTo({ top: destination, behavior: reduceMotion ? "auto" : "smooth" });
+      return;
+    }
+
+    pageScrollTween?.kill();
+    const position = { y: window.scrollY };
+    const distance = Math.abs(destination - position.y);
+    pageScrollTween = window.gsap.to(position, {
+      y: destination,
+      duration: Math.min(1.15, Math.max(.65, distance / 1600)),
+      ease: "power3.inOut",
+      onUpdate: () => window.scrollTo(0, position.y),
+      onComplete: () => { pageScrollTween = null; },
+    });
+  };
+
+  document.querySelectorAll('a[href^="#"]:not([href="#"]):not(.skip-link)').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const hash = link.getAttribute("href");
+      const target = document.getElementById(decodeURIComponent(hash.slice(1)));
+      if (!target) return;
+
+      event.preventDefault();
+      scrollToSection(target);
+      if (window.location.hash !== hash) window.history.pushState(null, "", hash);
+    });
+  });
+
+  const cancelPageScroll = () => {
+    pageScrollTween?.kill();
+    pageScrollTween = null;
+  };
+  window.addEventListener("wheel", cancelPageScroll, { passive: true });
+  window.addEventListener("touchstart", cancelPageScroll, { passive: true });
+
   if (rotatingWord && !reduceMotion) {
     let index = 0;
     window.setInterval(() => {

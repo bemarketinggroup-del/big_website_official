@@ -36,6 +36,7 @@ img { display: block; max-width: 100%; }
 .header-cta, .pill-link { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 0 21px; border: 1px solid currentColor; border-radius: 999px; font-size: 13px; font-weight: 600; letter-spacing: .045em; text-transform: uppercase; transition: color .25s ease, background .25s ease, transform .25s ease; }
 .header-cta:hover, .header-cta:focus-visible { color: var(--ink); background: #fff; }
 .site-header.is-on-light .header-cta:hover, .site-header.is-on-light .header-cta:focus-visible { color: var(--paper-light); background: var(--ink); }
+main section[id] { scroll-margin-top: 92px; }
 
 .hero { min-height: max(780px, 100svh); padding: clamp(176px, 22vh, 260px) var(--pad) 54px; display: flex; flex-direction: column; justify-content: space-between; background: var(--paper); }
 .hero-kicker { color: #756c62; }
