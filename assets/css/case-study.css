@@ -190,7 +190,7 @@ button { color: inherit; font: inherit; }
   .case-hero-copy { min-height: 72svh; padding-top: 115px; padding-bottom: 32px; }
   .case-eyebrow { margin-top: 10vh; }
   .case-title { font-size: clamp(48px, 14vw, 68px); letter-spacing: -.065em; }
-  .case-meta { gap: 8px 16px; margin-top: 28px; }
+  .case-meta { gap: 8px 16px; margin-top: 34px; }
   .case-hero-media { min-height: 58svh; }
   .hero-art-logo { width: 78%; }
   .hero-art-name { font-size: 34vw; }
