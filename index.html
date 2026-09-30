@@ -14,8 +14,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
-  <link rel="stylesheet" href="assets/css/site.css">
-  <script src="assets/js/site.js" defer></script>
+  <link rel="stylesheet" href="assets/css/site.css?v=20260930">
+  <script src="assets/js/site.js?v=20260930" defer></script>
 </head>
 <body>
   <a class="skip-link" href="#contenuto">Vai al contenuto</a>
@@ -27,7 +27,7 @@
   </header>
 
   <main id="contenuto">
-    <section class="hero" id="top" aria-labelledby="hero-title">
+    <section class="hero" id="top" aria-labelledby="hero-title" data-header-contrast="dark">
       <div class="hero-kicker mono">Be Marketing Group</div>
       <h1 id="hero-title">Diamo forma al modo<br>in cui un brand viene <span class="hero-word" data-rotating-word>scelto.</span></h1>
       <div class="hero-bottom">
@@ -36,14 +36,14 @@
       </div>
     </section>
 
-    <div class="sector-strip" aria-label="Settori in cui lavoriamo">
+    <div class="sector-strip" aria-label="Settori in cui lavoriamo" data-header-contrast="dark">
       <div class="sector-strip-track">
         <span>Hospitality</span><b></b><span>Luxury</span><b></b><span>Food &amp; Beverage</span><b></b><span>Retail</span><b></b><span>Personal Brand</span><b></b><span>E-commerce</span><b></b>
         <span aria-hidden="true">Hospitality</span><b aria-hidden="true"></b><span aria-hidden="true">Luxury</span><b aria-hidden="true"></b><span aria-hidden="true">Food &amp; Beverage</span><b aria-hidden="true"></b><span aria-hidden="true">Retail</span><b aria-hidden="true"></b><span aria-hidden="true">Personal Brand</span><b aria-hidden="true"></b><span aria-hidden="true">E-commerce</span><b aria-hidden="true"></b>
       </div>
     </div>
 
-    <section class="manifesto" aria-label="Il nostro punto di vista">
+    <section class="manifesto" aria-label="Il nostro punto di vista" data-header-contrast="light">
       <div class="manifesto-media" aria-hidden="true">
         <picture><source media="(max-width: 640px)" srcset="assets/images/portfolio/vetera_matera-800.webp"><img src="assets/images/portfolio/vetera_matera-1200.webp" alt="" width="1200" height="1800" fetchpriority="high"></picture>
       </div>
@@ -54,7 +54,7 @@
       </div>
     </section>
 
-    <section class="about" id="chi-siamo" aria-labelledby="about-title">
+    <section class="about" id="chi-siamo" aria-labelledby="about-title" data-header-contrast="light">
       <div class="about-intro reveal">
         <span class="section-index mono">02. Chi siamo</span>
         <div>
@@ -79,7 +79,7 @@
       </div>
     </section>
 
-    <section class="work" id="lavori" aria-labelledby="work-title">
+    <section class="work" id="lavori" aria-labelledby="work-title" data-header-contrast="dark">
       <div class="section-head reveal">
         <span class="section-index mono">03. Lavori scelti</span>
         <h2 id="work-title">Il progetto giusto non decora un’identità.<br><em>La rende evidente.</em></h2>
@@ -143,12 +143,12 @@
       </div>
     </section>
 
-    <div class="marquee" aria-hidden="true"><div class="marquee-track">
+    <div class="marquee" aria-hidden="true" data-header-contrast="light"><div class="marquee-track">
       <span>Strategia</span><b>✦</b><span>Brand identity</span><b>✦</b><span>Website</span><b>✦</b><span>Social media</span><b>✦</b><span>Content</span><b>✦</b><span>Campagne</span><b>✦</b>
       <span>Strategia</span><b>✦</b><span>Brand identity</span><b>✦</b><span>Website</span><b>✦</b><span>Social media</span><b>✦</b><span>Content</span><b>✦</b><span>Campagne</span><b>✦</b>
     </div></div>
 
-    <section class="services" id="competenze" aria-labelledby="services-title">
+    <section class="services" id="competenze" aria-labelledby="services-title" data-header-contrast="light">
       <div class="services-layout">
         <header class="services-intro reveal">
           <span class="section-index mono">04. Competenze</span>
@@ -174,7 +174,31 @@
       </div>
     </section>
 
-    <section class="clients" id="relazioni" aria-labelledby="clients-title">
+    <section class="project-showcase" aria-labelledby="showcase-title" data-header-contrast="light">
+      <div class="showcase-head reveal">
+        <div><span class="section-index mono">Uno sguardo ai progetti</span><h2 id="showcase-title">Immagini, luoghi<br>e <em>dettagli.</em></h2></div>
+        <div class="showcase-controls" aria-label="Controlli della galleria"><button type="button" data-showcase-prev aria-label="Fotografia precedente"><i class="ph ph-arrow-left" aria-hidden="true"></i></button><button type="button" data-showcase-next aria-label="Fotografia successiva"><i class="ph ph-arrow-right" aria-hidden="true"></i></button></div>
+      </div>
+      <div class="showcase-track" data-showcase-track>
+        <button class="showcase-card showcase-card--portrait" type="button" data-showcase-full="assets/images/projects/bellevue-syrene/room.jpg" data-showcase-caption="Bellevue Syrene — Interni" aria-label="Apri la fotografia di Bellevue Syrene"><img src="assets/images/projects/bellevue-syrene/room.jpg" alt="Interno elegante e luminoso" loading="lazy"><span>Bellevue Syrene · Interni</span></button>
+        <button class="showcase-card showcase-card--landscape" type="button" data-showcase-full="assets/images/projects/grand-hotel-aminta/pool.jpg" data-showcase-caption="Grand Hotel Aminta — Paesaggio" aria-label="Apri la fotografia del Grand Hotel Aminta"><img src="assets/images/projects/grand-hotel-aminta/pool.jpg" alt="Piscina affacciata sul Mediterraneo" loading="lazy"><span>Grand Hotel Aminta · Paesaggio</span></button>
+        <button class="showcase-card showcase-card--portrait" type="button" data-showcase-full="assets/images/projects/vetera-matera/city.jpg" data-showcase-caption="Vetera Matera — Luogo" aria-label="Apri la fotografia di Vetera Matera"><img src="assets/images/projects/vetera-matera/city.jpg" alt="Architettura in pietra a Matera" loading="lazy"><span>Vetera Matera · Luogo</span></button>
+        <button class="showcase-card showcase-card--square" type="button" data-showcase-full="assets/images/projects/zest-restaurant/hero.jpg" data-showcase-caption="Zest — Cucina" aria-label="Apri la fotografia di Zest"><img src="assets/images/projects/zest-restaurant/hero.jpg" alt="Chef durante l'impiattamento" loading="lazy"><span>Zest · Cucina</span></button>
+        <button class="showcase-card showcase-card--portrait" type="button" data-showcase-full="assets/images/projects/costiera-gin/glasses.jpg" data-showcase-caption="Costiera Gin — Prodotto" aria-label="Apri la fotografia di Costiera Gin"><img src="assets/images/projects/costiera-gin/glasses.jpg" alt="Gin tonic con erbe e agrumi" loading="lazy"><span>Costiera Gin · Prodotto</span></button>
+        <button class="showcase-card showcase-card--landscape" type="button" data-showcase-full="assets/images/projects/grand-hotel-la-favorita/sorrento.jpg" data-showcase-caption="Grand Hotel La Favorita — Sorrento" aria-label="Apri la fotografia del Grand Hotel La Favorita"><img src="assets/images/projects/grand-hotel-la-favorita/sorrento.jpg" alt="Veduta aerea della costa di Sorrento" loading="lazy"><span>Grand Hotel La Favorita · Sorrento</span></button>
+        <button class="showcase-card showcase-card--square" type="button" data-showcase-full="assets/images/projects/vetera-matera/interior.jpg" data-showcase-caption="Vetera Matera — Materia" aria-label="Apri il dettaglio di Vetera Matera"><img src="assets/images/projects/vetera-matera/interior.jpg" alt="Interno mediterraneo dai materiali naturali" loading="lazy"><span>Vetera Matera · Materia</span></button>
+      </div>
+      <div class="showcase-progress" aria-hidden="true"><span data-showcase-progress></span></div>
+    </section>
+
+    <dialog class="showcase-lightbox" data-showcase-lightbox aria-label="Galleria fotografica a schermo intero">
+      <div class="showcase-lightbox-top"><span class="mono" data-showcase-counter></span><button type="button" data-showcase-close aria-label="Chiudi la galleria"><i class="ph ph-x" aria-hidden="true"></i></button></div>
+      <button class="showcase-lightbox-arrow showcase-lightbox-arrow--prev" type="button" data-showcase-lightbox-prev aria-label="Fotografia precedente"><i class="ph ph-arrow-left" aria-hidden="true"></i></button>
+      <figure class="showcase-lightbox-stage" data-showcase-stage><img src="" alt="" data-showcase-image><figcaption data-showcase-caption></figcaption></figure>
+      <button class="showcase-lightbox-arrow showcase-lightbox-arrow--next" type="button" data-showcase-lightbox-next aria-label="Fotografia successiva"><i class="ph ph-arrow-right" aria-hidden="true"></i></button>
+    </dialog>
+
+    <section class="clients" id="relazioni" aria-labelledby="clients-title" data-header-contrast="dark">
       <div class="clients-head reveal"><span class="section-index mono">05. Relazioni</span><h2 id="clients-title">Hanno scelto di<br>lavorare con noi.</h2></div>
       <div class="logo-grid reveal" aria-label="Alcuni clienti di BMG">
         <a href="projects/vetera-matera.html" aria-label="Scopri il progetto Vetera Matera"><img src="assets/images/client-logos/vetera.svg" alt="Vetera Matera" loading="lazy"></a>
@@ -186,7 +210,7 @@
       </div>
     </section>
 
-    <section class="beviral" id="beviral" aria-labelledby="beviral-title">
+    <section class="beviral" id="beviral" aria-labelledby="beviral-title" data-header-contrast="light">
       <div class="beviral-top">
         <span class="beviral-mark mono">Una divisione BMG</span>
         <img class="beviral-logo" src="assets/images/logos/logo-beviral-white.png" alt="BeViral" width="2000" height="1012" loading="lazy">
@@ -204,7 +228,7 @@
       </div>
     </section>
 
-    <section class="contact" id="contatti" aria-labelledby="contact-title">
+    <section class="contact" id="contatti" aria-labelledby="contact-title" data-header-contrast="light">
       <span class="section-index mono">06. Contatti</span>
       <h2 id="contact-title">Un progetto prende forma<br>quando se ne <em>parla.</em></h2>
       <div class="contact-layout">

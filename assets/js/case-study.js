@@ -7,6 +7,27 @@
   let previousY = window.scrollY;
   let ticking = false;
 
+  const headerSurfaces = [
+    [".case-hero", "split"],
+    [".case-intro, .case-details", "dark"],
+    [".case-gallery, .case-next, .case-footer", "light"],
+  ];
+
+  headerSurfaces.forEach(([selector, contrast]) => {
+    document.querySelectorAll(selector).forEach((element) => { element.dataset.headerContrast = contrast; });
+  });
+
+  const updateHeaderContrast = () => {
+    if (!header) return;
+    const sampleY = Math.min(65, window.innerHeight - 1);
+    const surface = document.elementsFromPoint(window.innerWidth / 2, sampleY)
+      .map((element) => element.closest?.("[data-header-contrast]"))
+      .find(Boolean);
+    const contrast = surface?.dataset.headerContrast;
+    header.classList.toggle("is-on-light", contrast === "dark");
+    header.classList.toggle("is-split", contrast === "split");
+  };
+
   const updateScroll = () => {
     const currentY = window.scrollY;
     const maximum = document.documentElement.scrollHeight - window.innerHeight;
@@ -15,6 +36,7 @@
     if (header) {
       if (currentY > previousY + 6 && currentY > 120) header.classList.add("is-hidden");
       if (currentY < previousY - 6 || currentY < 80) header.classList.remove("is-hidden");
+      updateHeaderContrast();
     }
 
     previousY = Math.max(currentY, 0);
@@ -27,6 +49,9 @@
       ticking = true;
     }
   }, { passive: true });
+
+  window.addEventListener("resize", updateHeaderContrast);
+  updateHeaderContrast();
 
   const reveals = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window && !reduceMotion) {
