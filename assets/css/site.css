@@ -220,6 +220,15 @@ body.showcase-lightbox-open { overflow: hidden; }
 .contact-form select option { color: var(--ink); background: #fff; }
 .contact-form textarea { resize: vertical; min-height: 76px; }
 .contact-form input:focus, .contact-form select:focus, .contact-form textarea:focus { border-bottom-color: #fff; }
+.choice-field { min-width: 0; margin: 0; padding: 0; border: 0; }
+.choice-field legend { margin-bottom: 10px; padding: 0; color: rgba(255,255,255,.66); }
+.choice-grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 8px; }
+.contact-form .choice-option { position: relative; display: block; min-width: 0; cursor: pointer; }
+.contact-form .choice-option input { position: absolute; width: 1px; height: 1px; margin: 0; padding: 0; overflow: hidden; border: 0; clip-path: inset(50%); white-space: nowrap; }
+.contact-form .choice-option span { display: flex; min-height: 46px; height: 100%; align-items: center; justify-content: center; padding: 8px 9px; border: 1px solid rgba(255,255,255,.46); border-radius: 9px; color: #fff; font-size: 13px; line-height: 1.2; text-align: center; transition: background .2s ease, color .2s ease, border-color .2s ease; }
+.choice-option:hover span { border-color: #fff; background: rgba(255,255,255,.08); }
+.contact-form .choice-option input:checked + span { border-color: #fff; color: var(--accent); background: #fff; }
+.choice-option input:focus-visible + span { outline: 2px solid #fff; outline-offset: 3px; }
 .contact-form-bottom { display: flex; align-items: center; justify-content: space-between; gap: 25px; }
 .contact-form-bottom small { max-width: 290px; color: rgba(255,255,255,.66); }
 .contact-form button { display: inline-flex; align-items: center; gap: 10px; min-height: 52px; padding: 0 24px; border: 1px solid #fff; border-radius: 999px; color: var(--accent); background: #fff; font-weight: 600; cursor: pointer; transition: color .25s ease, background .25s ease; }
@@ -362,11 +371,15 @@ body.showcase-lightbox-open { overflow: hidden; }
   .contact-form label { gap: 4px; }
   .contact-form input, .contact-form select, .contact-form textarea { padding-bottom: 7px; font-size: 17px; }
   .contact-form textarea { min-height: 50px; }
+  .choice-field legend { margin-bottom: 7px; }
+  .choice-grid { gap: 6px; }
+  .contact-form .choice-option span { min-height: 42px; padding: 7px 6px; font-size: 12px; }
   .contact-form-bottom small { font-size: 12px; }
   .contact-form button { min-height: 44px; padding-inline: 19px; }
 }
 
 @media (max-width: 900px) {
+  .choice-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .hero { min-height: 840px; }
   .hero h1 { font-size: clamp(58px, 12.5vw, 105px); }
   .about-intro { grid-template-columns: 1fr; }
@@ -462,6 +475,8 @@ body.showcase-lightbox-open { overflow: hidden; }
   .contact h2 { margin: 32px 0 44px; font-size: clamp(44px, 12vw, 60px); }
   .contact-layout { gap: 54px; }
   .contact-mail { font-size: 18px; }
+  .choice-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .choice-grid--5 .choice-option:last-child { grid-column: 1 / -1; }
   .contact-form-bottom { align-items: flex-start; flex-direction: column; }
   .site-footer { grid-template-columns: 1fr; gap: 32px; padding-top: 50px; }
   .footer-links { flex-wrap: wrap; }

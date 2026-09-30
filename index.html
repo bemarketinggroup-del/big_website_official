@@ -14,7 +14,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wdth,wght@12..96,75..100,300..700&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.2/src/regular/style.css">
-  <link rel="stylesheet" href="assets/css/site.css?v=20260930-17">
+  <link rel="stylesheet" href="assets/css/site.css?v=20260930-18">
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js" defer></script>
   <script src="assets/js/site.js?v=20260930-10" defer></script>
@@ -243,7 +243,16 @@
         <form class="contact-form" data-contact-form>
           <label><span class="mono">Nome e cognome</span><input type="text" name="name" autocomplete="name" required placeholder="Come ti chiami?"></label>
           <label><span class="mono">Email</span><input type="email" name="email" autocomplete="email" required placeholder="nome@dominio.com"></label>
-          <label><span class="mono">Settore</span><select name="service"><option value="">Seleziona</option><option>Hospitality</option><option>Food &amp; Beverage</option><option>Luxury / Retail</option><option>Personal Brand</option><option>Altro</option></select></label>
+          <fieldset class="choice-field">
+            <legend class="mono">Settore</legend>
+            <div class="choice-grid choice-grid--5">
+              <label class="choice-option"><input type="radio" name="service" value="Hospitality"><span>Hospitality</span></label>
+              <label class="choice-option"><input type="radio" name="service" value="Food &amp; Beverage"><span>Food &amp; Beverage</span></label>
+              <label class="choice-option"><input type="radio" name="service" value="Luxury / Retail"><span>Luxury / Retail</span></label>
+              <label class="choice-option"><input type="radio" name="service" value="Personal Brand"><span>Personal Brand</span></label>
+              <label class="choice-option"><input type="radio" name="service" value="Altro"><span>Altro</span></label>
+            </div>
+          </fieldset>
           <label><span class="mono">Il progetto, in breve</span><textarea name="message" rows="3" required placeholder="Da dove partiamo?"></textarea></label>
           <div class="contact-form-bottom"><small>Usiamo questi dati soltanto per rispondere alla tua richiesta.</small><button type="submit">Richiedi un confronto <i class="ph ph-arrow-up-right" aria-hidden="true"></i></button></div>
           <p class="form-status" data-form-status role="status" aria-live="polite"></p>
