@@ -352,7 +352,7 @@ body.showcase-lightbox-open { overflow: hidden; }
   .work .section-head h2 { font-size: clamp(38px, 10.5vw, 54px); line-height: .98; letter-spacing: -.045em; }
   .project-grid { display: flex; gap: 14px; overflow-x: auto; padding: 0 var(--pad) 18px; scroll-padding-inline: var(--pad); scroll-snap-type: x proximity; overscroll-behavior-x: contain; scrollbar-width: none; touch-action: auto; -webkit-overflow-scrolling: touch; }
   .project-grid::-webkit-scrollbar { display: none; }
-  .project-card, .project-card--wide, .project-card:nth-child(even) { flex: 0 0 84vw; width: 84vw; margin: 0; transform: none; scroll-snap-align: start; }
+  .project-card, .project-card--wide, .project-card:nth-child(even) { flex: 0 0 78vw; width: 78vw; margin: 0; transform: none; scroll-snap-align: start; }
   .project-card a, .project-card--portrait a { height: min(64svh, 570px); max-height: none; }
   .project-meta { padding: 22px; }
   .project-meta strong { font-size: 28px; }
