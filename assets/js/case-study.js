@@ -68,6 +68,92 @@
     reveals.forEach((element) => element.classList.add("is-visible"));
   }
 
+  const galleryGrid = document.querySelector(".media-grid");
+  if (galleryGrid) {
+    const galleryItems = Array.from(galleryGrid.querySelectorAll("[data-gallery-src]"));
+
+    galleryItems.forEach((item) => {
+      if (item.querySelector(".gallery-caption")) return;
+      const caption = document.createElement("span");
+      caption.className = "gallery-caption";
+      caption.textContent = item.dataset.galleryAlt || "Fotografia del progetto";
+      item.append(caption);
+    });
+
+    if (galleryItems.length > 1) {
+      const featured = galleryItems[0];
+      const carouselItems = galleryItems.slice(1);
+      const carousel = document.createElement("div");
+      const track = document.createElement("div");
+      const progressBar = document.createElement("div");
+      const progressValue = document.createElement("span");
+      const tools = document.createElement("div");
+      const carouselLabel = document.createElement("span");
+      const controls = document.createElement("div");
+      const counter = document.createElement("span");
+      const previous = document.createElement("button");
+      const next = document.createElement("button");
+
+      featured.classList.add("gallery-feature");
+      carousel.className = "gallery-carousel";
+      track.className = "gallery-track";
+      track.setAttribute("aria-label", "Altre fotografie del progetto");
+      progressBar.className = "gallery-progress";
+      progressBar.setAttribute("aria-hidden", "true");
+      progressBar.append(progressValue);
+      carouselItems.forEach((item) => track.append(item));
+      tools.className = "gallery-tools";
+      carouselLabel.className = "mono";
+      carouselLabel.textContent = "Altre immagini";
+      controls.className = "gallery-controls";
+      controls.setAttribute("aria-label", "Controlli della galleria");
+      counter.className = "gallery-counter mono";
+      previous.type = "button";
+      previous.setAttribute("aria-label", "Fotografia precedente");
+      previous.innerHTML = '<i class="ph ph-arrow-left" aria-hidden="true"></i>';
+      next.type = "button";
+      next.setAttribute("aria-label", "Fotografia successiva");
+      next.innerHTML = '<i class="ph ph-arrow-right" aria-hidden="true"></i>';
+      controls.append(counter, previous, next);
+      tools.append(carouselLabel, controls);
+      carousel.append(tools, track, progressBar);
+
+      galleryGrid.classList.add("is-carousel");
+      galleryGrid.replaceChildren(featured, carousel);
+
+      let activeIndex = 0;
+      let galleryFrame = 0;
+
+      const itemLeft = (item) => item.offsetLeft - (parseFloat(getComputedStyle(track).paddingLeft) || 0);
+      const updateCarousel = () => {
+        activeIndex = carouselItems.reduce((closest, item, index) => (
+          Math.abs(itemLeft(item) - track.scrollLeft) < Math.abs(itemLeft(carouselItems[closest]) - track.scrollLeft)
+            ? index
+            : closest
+        ), 0);
+        counter.textContent = `${String(activeIndex + 1).padStart(2, "0")} / ${String(carouselItems.length).padStart(2, "0")}`;
+        progressValue.style.transform = `scaleX(${(activeIndex + 1) / carouselItems.length})`;
+        previous.disabled = activeIndex === 0;
+        next.disabled = activeIndex === carouselItems.length - 1;
+        galleryFrame = 0;
+      };
+
+      const moveCarousel = (direction) => {
+        const targetIndex = Math.max(0, Math.min(carouselItems.length - 1, activeIndex + direction));
+        track.scrollTo({ left: itemLeft(carouselItems[targetIndex]), behavior: reduceMotion ? "auto" : "smooth" });
+      };
+
+      previous.addEventListener("click", () => moveCarousel(-1));
+      next.addEventListener("click", () => moveCarousel(1));
+      track.addEventListener("scroll", () => {
+        if (galleryFrame) return;
+        galleryFrame = requestAnimationFrame(updateCarousel);
+      }, { passive: true });
+      window.addEventListener("resize", updateCarousel);
+      requestAnimationFrame(updateCarousel);
+    }
+  }
+
   const galleryButtons = Array.from(document.querySelectorAll("[data-gallery-src]"));
   if (!galleryButtons.length) return;
 
