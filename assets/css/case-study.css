@@ -139,6 +139,38 @@ button { color: inherit; font: inherit; }
 .reveal.is-visible { opacity: 1; transform: none; }
 :focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
 
+@media (min-width: 901px) {
+  /* Desktop: le aperture restano d'impatto senza uscire dal viewport. */
+  .case-hero-copy { padding-top: 145px; padding-bottom: 46px; }
+  .case-eyebrow { margin-top: 7vh; margin-bottom: 22px; }
+  .case-title { max-width: 760px; font-size: clamp(58px, 6.15vw, 110px); line-height: .86; }
+  .case-meta { margin-top: 32px; padding-top: 17px; }
+  .hero-art-logo { width: min(62%, 360px); }
+  .hero-art-name { font-size: clamp(86px, 11vw, 176px); }
+
+  .case-intro { padding: clamp(78px, 7vw, 112px) var(--pad); }
+  .case-lead { max-width: 1380px; margin-bottom: clamp(62px, 6vw, 96px); font-size: clamp(44px, 5.35vw, 96px); line-height: .95; }
+  .case-story { grid-template-columns: minmax(170px, .42fr) minmax(0, 1.58fr); padding-top: 30px; }
+  .case-story-text { max-width: 790px; font-size: clamp(20px, 1.82vw, 32px); }
+
+  .case-details { gap: clamp(58px, 7vw, 120px); padding-bottom: clamp(82px, 8vw, 125px); }
+  .case-stat strong { font-size: clamp(32px, 3.45vw, 60px); }
+
+  .case-gallery { padding: clamp(84px, 7vw, 112px) var(--pad); }
+  .gallery-head { margin-bottom: clamp(58px, 6vw, 94px); }
+  .gallery-head h2 { font-size: clamp(54px, 6.45vw, 116px); line-height: .84; }
+  .media-slot--b { margin-top: 12vw; }
+  .media-slot--c { margin-top: 5vw; }
+  .media-slot--d { margin-top: 12vw; }
+  .media-slot--e { margin-top: 8vw; }
+  .variant-panorama .media-slot--b { margin-top: 6vw; }
+  .variant-panorama .media-slot--c { margin-top: 11vw; }
+  .variant-product .media-slot--c { margin-top: 10vw; }
+
+  .case-next { min-height: 82svh; padding-top: 64px; padding-bottom: 50px; }
+  .case-next h2 { margin: clamp(70px, 9vh, 105px) 0; font-size: clamp(58px, 7.2vw, 128px); line-height: .88; }
+}
+
 @media (max-width: 900px) {
   .case-hero { grid-template-columns: 1fr; }
   .case-hero-copy { min-height: 76svh; }

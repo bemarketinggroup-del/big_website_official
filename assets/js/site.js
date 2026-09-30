@@ -55,6 +55,92 @@
     }, 2800);
   }
 
+  const projectGrid = document.querySelector(".project-grid");
+  const projectCards = Array.from(document.querySelectorAll(".project-card"));
+  const projectCurrent = document.querySelector("[data-project-current]");
+  const projectScrollStatus = document.querySelector(".project-scroll-status");
+
+  if (projectGrid && projectCards.length && window.gsap && window.ScrollTrigger && !reduceMotion) {
+    window.gsap.registerPlugin(window.ScrollTrigger);
+    const desktopProjects = window.gsap.matchMedia();
+
+    desktopProjects.add("(min-width: 901px)", () => {
+      projectCards.forEach((card, index) => {
+        card.style.zIndex = String(index + 1);
+        card.dataset.headerContrast = "light";
+
+        const image = card.querySelector("picture img");
+        const meta = card.querySelector(".project-meta");
+        const overlay = card.querySelector(".project-overlay");
+
+        window.ScrollTrigger.create({
+          trigger: card,
+          start: "top center",
+          end: "bottom center",
+          onEnter: () => { if (projectCurrent) projectCurrent.textContent = String(index + 1).padStart(2, "0"); },
+          onEnterBack: () => { if (projectCurrent) projectCurrent.textContent = String(index + 1).padStart(2, "0"); },
+        });
+
+        if (image) {
+          window.gsap.fromTo(image, { scale: 1.065 }, {
+            scale: 1,
+            ease: "none",
+            scrollTrigger: { trigger: card, start: "top bottom", end: "top top", scrub: true },
+          });
+        }
+
+        if (meta) {
+          window.gsap.fromTo(meta, { y: 34, opacity: .45 }, {
+            y: 0,
+            opacity: 1,
+            ease: "none",
+            scrollTrigger: { trigger: card, start: "top 82%", end: "top 42%", scrub: true },
+          });
+        }
+
+        if (overlay) {
+          window.gsap.fromTo(overlay, { opacity: .55 }, {
+            opacity: 1,
+            ease: "none",
+            scrollTrigger: { trigger: card, start: "top 92%", end: "top 12%", scrub: true },
+          });
+        }
+      });
+
+      window.ScrollTrigger.create({
+        trigger: projectGrid,
+        start: "top 92%",
+        end: "bottom bottom",
+        onEnter: () => projectScrollStatus?.classList.add("is-active"),
+        onEnterBack: () => projectScrollStatus?.classList.add("is-active"),
+        onLeave: () => projectScrollStatus?.classList.remove("is-active"),
+        onLeaveBack: () => projectScrollStatus?.classList.remove("is-active"),
+      });
+
+      window.ScrollTrigger.create({
+        trigger: projectGrid,
+        start: "top top",
+        end: "bottom bottom",
+        snap: {
+          snapTo: 1 / Math.max(1, projectCards.length - 1),
+          duration: { min: .18, max: .52 },
+          delay: .08,
+          ease: "power2.inOut",
+        },
+      });
+
+      window.ScrollTrigger.refresh();
+
+      return () => {
+        projectScrollStatus?.classList.remove("is-active");
+        projectCards.forEach((card) => {
+          card.style.removeProperty("z-index");
+          delete card.dataset.headerContrast;
+        });
+      };
+    });
+  }
+
   const reveals = document.querySelectorAll(".reveal");
   if ("IntersectionObserver" in window && !reduceMotion) {
     const observer = new IntersectionObserver((entries) => {

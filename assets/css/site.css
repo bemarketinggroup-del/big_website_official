@@ -79,6 +79,7 @@ em { color: var(--accent); font-family: var(--serif); font-weight: 400; }
 .work { padding: 140px var(--pad) 160px; background: var(--paper-light); }
 .section-head { display: grid; grid-template-columns: minmax(150px, .4fr) minmax(0, 1.6fr); gap: 30px; align-items: start; margin-bottom: clamp(76px, 10vw, 160px); }
 .section-head h2, .clients h2, .contact h2 { margin: 0; font-size: clamp(52px, 7vw, 128px); font-weight: 400; line-height: .94; letter-spacing: -.055em; }
+.project-scroll-status { display: none; }
 .project-grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: clamp(14px, 2vw, 34px); }
 .project-card { grid-column: span 5; margin-bottom: clamp(50px, 9vw, 150px); }
 .project-card--wide { grid-column: span 7; }
@@ -93,6 +94,7 @@ em { color: var(--accent); font-family: var(--serif); font-weight: 400; }
 .project-meta strong { font-size: clamp(24px, 2.5vw, 42px); font-weight: 500; line-height: 1; letter-spacing: -.035em; }
 .project-meta small { font-family: var(--mono); font-size: 10px; letter-spacing: .06em; text-transform: uppercase; opacity: .82; }
 .project-meta i { font-size: clamp(26px, 3vw, 42px); transition: transform .3s ease; }
+.project-cta { display: block; font-size: 0; }
 .project-card a:hover img { transform: scale(1.035); }
 .project-card a:hover .project-meta i { transform: translate(4px, -4px); }
 .project-card--graphic a { isolation: isolate; }
@@ -233,6 +235,72 @@ body.showcase-lightbox-open { overflow: hidden; }
 .reveal.is-visible { opacity: 1; transform: translateY(0); }
 :focus-visible { outline: 2px solid currentColor; outline-offset: 5px; }
 
+@media (min-width: 901px) {
+  /* Desktop: una scala più editoriale e contenuti leggibili entro il viewport. */
+  .hero { min-height: 100svh; padding-top: clamp(145px, 18vh, 205px); padding-bottom: 42px; }
+  .hero h1 { max-width: 1380px; font-size: clamp(60px, 7.5vw, 132px); line-height: .9; }
+  .hero-bottom p { max-width: 560px; font-size: clamp(17px, 1.35vw, 24px); }
+  .manifesto-copy { bottom: 6vh; gap: clamp(25px, 4vh, 52px); }
+  .manifesto-copy p { max-width: 1280px; font-size: clamp(54px, 6.7vw, 118px); }
+
+  .about { padding-top: 110px; padding-bottom: 105px; }
+  .about-intro h2 { font-size: clamp(50px, 5.55vw, 98px); }
+  .about-lead { margin-top: 38px; font-size: clamp(20px, 1.7vw, 30px); }
+  .focus-list { margin-top: clamp(72px, 7vw, 110px); }
+  .focus-row { padding: clamp(25px, 2.65vw, 42px) 0; }
+  .focus-row h3 { font-size: clamp(29px, 2.6vw, 46px); }
+  .stats { margin-top: 52px; }
+
+  .work { padding: 0; }
+  .work .section-head { min-height: min(100svh, 920px); grid-template-columns: minmax(140px, .34fr) minmax(0, 1.66fr); align-content: center; margin: 0; padding: 120px var(--pad) 80px; }
+  .work .section-head h2 { max-width: 1240px; font-size: clamp(50px, 5.7vw, 100px); }
+  .project-scroll-status { position: sticky; z-index: 35; top: calc(100svh - 64px); display: inline-flex; width: 72px; height: 32px; align-items: center; justify-content: center; margin: 0 0 -32px var(--pad); padding: 0 10px; border-radius: 999px; color: #fff; background: rgba(15,12,10,.42); backdrop-filter: blur(8px); line-height: 1; opacity: 0; pointer-events: none; transform: translateY(8px); transition: opacity .25s ease, transform .25s ease; }
+  .project-scroll-status.is-active { opacity: 1; transform: none; }
+  .project-grid { display: block; }
+  .project-card,
+  .project-card--wide,
+  .project-card:nth-child(even) { position: sticky; top: 0; width: 100%; height: 100svh; margin: 0; transform: none; }
+  .project-card.reveal { opacity: 1; transform: none; transition: none; }
+  .project-card a,
+  .project-card--portrait a { width: 100%; height: 100%; }
+  .project-card picture,
+  .project-card img { transform-origin: center; }
+  .project-overlay { background: linear-gradient(180deg, rgba(12,10,8,.32), rgba(12,10,8,.44) 52%, rgba(12,10,8,.74)); }
+  .project-meta { inset: 0; flex-direction: column; align-items: center; justify-content: center; padding: clamp(32px, 4vw, 68px) var(--pad); text-align: center; }
+  .project-meta > span { align-items: center; gap: 16px; }
+  .project-meta strong { max-width: 1180px; font-size: clamp(58px, 7vw, 126px); font-weight: 400; line-height: .88; letter-spacing: -.06em; text-wrap: balance; text-shadow: 0 2px 22px rgba(0,0,0,.22); }
+  .project-meta small { font-size: clamp(10px, .72vw, 12px); letter-spacing: .1em; }
+  .project-meta > .project-cta { display: inline-flex; width: auto; align-items: center; justify-content: center; gap: 12px; margin: 24px 0 0; padding: 0 0 7px; border-bottom: 1px solid currentColor; font-size: clamp(15px, 1.25vw, 20px); font-weight: 500; line-height: 1; white-space: nowrap; }
+  .project-cta i { position: static; margin: 0; font-size: 1.15em; }
+  .project-card a:hover .project-cta i { transform: translateX(5px); }
+  .project-card--graphic .project-graphic { opacity: .22; }
+  .project-graphic-name { font-size: clamp(90px, 11vw, 180px); }
+
+  .services { padding-top: 115px; padding-bottom: 125px; }
+  .services-intro { top: 110px; }
+  .services-intro .section-index { margin-bottom: clamp(48px, 5.4vw, 90px); }
+  .services-intro h2 { font-size: clamp(52px, 5.25vw, 92px); }
+  .service-panel { min-height: min(76svh, 650px); padding: clamp(26px, 3vw, 48px); }
+  .service-panel-copy { padding: clamp(42px, 5vh, 72px) 0; }
+  .service-panel-copy h3 { font-size: clamp(48px, 5vw, 86px); }
+
+  .project-showcase { padding-top: 110px; padding-bottom: 90px; }
+  .showcase-head { margin-bottom: clamp(48px, 5vw, 78px); }
+  .showcase-head h2 { font-size: clamp(52px, 5.7vw, 100px); }
+  .showcase-card { height: min(59svh, 610px); }
+
+  .clients { min-height: 100svh; display: flex; flex-direction: column; justify-content: center; padding-top: 105px; padding-bottom: 90px; }
+  .clients-head { gap: 30px; margin-bottom: clamp(55px, 6vh, 85px); }
+  .clients-head h2 { max-width: 920px; font-size: clamp(50px, 5.6vw, 98px); }
+  .logo-grid > a, .logo-grid > div { height: 94px; }
+  .logo-grid img { max-height: 78px; }
+
+  .beviral { min-height: min(84svh, 820px); gap: clamp(60px, 8vw, 135px); padding-top: 52px; padding-bottom: 65px; }
+  .beviral-copy h2 { font-size: clamp(40px, 4.35vw, 76px); }
+  .contact { min-height: 100svh; padding-top: 70px; padding-bottom: 55px; }
+  .contact h2 { margin: clamp(60px, 8vh, 95px) 0; font-size: clamp(56px, 7vw, 120px); }
+}
+
 @media (max-width: 900px) {
   .hero { min-height: 840px; }
   .hero h1 { font-size: clamp(58px, 12.5vw, 105px); }
@@ -279,9 +347,12 @@ body.showcase-lightbox-open { overflow: hidden; }
   .stats { grid-template-columns: repeat(2, 1fr); gap: 42px 20px; }
   .section-head { margin-bottom: 70px; }
   .section-head h2, .clients h2 { font-size: clamp(44px, 13vw, 68px); }
-  .project-grid { display: block; }
-  .project-card, .project-card--wide, .project-card:nth-child(even) { margin: 0 0 22px; transform: none; }
-  .project-card a, .project-card--portrait a { height: 128vw; max-height: 690px; }
+  .work { padding-right: 0; padding-left: 0; }
+  .work .section-head { padding-right: var(--pad); padding-left: var(--pad); }
+  .project-grid { display: flex; gap: 14px; overflow-x: auto; padding: 0 var(--pad) 18px; scroll-padding-inline: var(--pad); scroll-snap-type: x mandatory; overscroll-behavior-inline: contain; scrollbar-width: none; touch-action: pan-x; }
+  .project-grid::-webkit-scrollbar { display: none; }
+  .project-card, .project-card--wide, .project-card:nth-child(even) { flex: 0 0 86vw; width: 86vw; margin: 0; transform: none; scroll-snap-align: start; }
+  .project-card a, .project-card--portrait a { height: min(72svh, 650px); max-height: none; }
   .project-meta { padding: 22px; }
   .project-meta strong { font-size: 28px; }
   .services-layout { gap: 58px; }
