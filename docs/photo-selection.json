@@ -605,12 +605,129 @@
         "showcase"
       ],
       "caption": "La cura del piatto, al momento del servizio"
+    },
+    {
+      "client": "Grand Hotel Europa Palace",
+      "source": "EUROPA/chiusura (1).JPG",
+      "asset": "assets/images/clients/europa-palace/photo-03-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "La piscina e il Golfo dalla terrazza"
+    },
+    {
+      "client": "Grand Hotel Europa Palace",
+      "source": "EUROPA/DJI_20260622170440_0529_D (1).JPG",
+      "asset": "assets/images/clients/europa-palace/photo-05-full.webp",
+      "uses": [
+        "feature"
+      ],
+      "caption": "Europa Palace tra il centro di Sorrento e il mare"
+    },
+    {
+      "client": "Grand Hotel Europa Palace",
+      "source": "EUROPA/DJI_20260622170709_0536_D (1).JPG",
+      "asset": "assets/images/clients/europa-palace/photo-06-full.webp",
+      "uses": [
+        "cover"
+      ],
+      "caption": "La facciata del Grand Hotel Europa Palace"
+    },
+    {
+      "client": "Grand Hotel Europa Palace",
+      "source": "EUROPA/UUU_1973.JPG",
+      "asset": "assets/images/clients/europa-palace/photo-07-full.webp",
+      "uses": [
+        "hero"
+      ],
+      "caption": "Il mare dalla camera"
+    },
+    {
+      "client": "Grand Hotel Europa Palace",
+      "source": "EUROPA/UUU_1993 (1).JPG",
+      "asset": "assets/images/clients/europa-palace/photo-08-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Una pausa tra le pagine e il caffè"
+    },
+    {
+      "client": "Grand Hotel Europa Palace",
+      "source": "EUROPA/UUU_1997.JPG",
+      "asset": "assets/images/clients/europa-palace/photo-09-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Luce e archi nel corridoio"
+    },
+    {
+      "client": "Grand Hotel Europa Palace",
+      "source": "EUROPA/UUU_2004.JPG",
+      "asset": "assets/images/clients/europa-palace/photo-10-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Il salone e il bar"
+    },
+    {
+      "client": "Grand Hotel Europa Palace",
+      "source": "EUROPA/UUU_2011.JPG",
+      "asset": "assets/images/clients/europa-palace/photo-11-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Un dettaglio degli arredi"
+    },
+    {
+      "client": "Grand Hotel Europa Palace",
+      "source": "EUROPA/UUU_2013.JPG",
+      "asset": "assets/images/clients/europa-palace/photo-12-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Le poltrone del salone"
+    },
+    {
+      "client": "Grand Hotel Europa Palace",
+      "source": "EUROPA/UUU_2050 (1).JPG",
+      "asset": "assets/images/clients/europa-palace/photo-13-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Il giardino affacciato sul Golfo"
+    },
+    {
+      "client": "Grand Hotel Europa Palace",
+      "source": "EUROPA/UUU_2123.JPG",
+      "asset": "assets/images/clients/europa-palace/photo-14-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Un momento sulla terrazza"
+    },
+    {
+      "client": "Grand Hotel Europa Palace",
+      "source": "EUROPA/UUU_4872.JPG",
+      "asset": "assets/images/clients/europa-palace/photo-15-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "La cura del piatto"
+    },
+    {
+      "client": "Grand Hotel Europa Palace",
+      "source": "EUROPA/UUU_8781.jpg",
+      "asset": "assets/images/clients/europa-palace/photo-16-full.webp",
+      "uses": [
+        "gallery"
+      ],
+      "caption": "Un brindisi davanti al Vesuvio"
     }
   ],
   "notes": [
     "Copertine, aperture, immagini principali e caroselli usano fotografie distinte.",
     "Home e landing mostrano una fotografia per ciascuno dei sette clienti forniti.",
-    "Europa Palace e Artema non hanno una pagina progetto nel sito attuale.",
-    "Per Costiera Gin non è stato fornito nuovo materiale."
+    "Artema non ha una pagina progetto nel sito attuale.",
+    "Europa Palace sostituisce Costiera Gin nel portfolio dal 1 ottobre 2026."
   ]
 }

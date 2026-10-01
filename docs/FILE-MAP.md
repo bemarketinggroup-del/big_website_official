@@ -20,7 +20,8 @@ Guida rapida a tutti i file del progetto e la loro funzione.
 | `grand-hotel-la-favorita.html` | Grand Hotel La Favorita — Hospitality |
 | `vetera-matera.html` | Vetera Matera — Hospitality / Boutique |
 | `zest-restaurant.html` | Zest Restaurant — Food |
-| `costiera-gin.html` | Costiera Gin — Beverage / Brand |
+| `grand-hotel-europa-palace.html` | Grand Hotel Europa Palace — Hospitality |
+| `costiera-gin.html` | Reindirizzamento al cliente Europa Palace per i vecchi link |
 
 ---
 

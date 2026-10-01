@@ -64,6 +64,9 @@ button { color: inherit; font: inherit; }
 .case-hero-media { min-height: 100svh; background: var(--project-dark); overflow: hidden; }
 .case-hero-media .media-button, .case-hero-media img { width: 100%; height: 100%; }
 .case-hero-media img { object-fit: cover; }
+.theme-europa .case-hero-media { position: relative; }
+.theme-europa .case-hero-media > .media-button { position: absolute; inset: 0; }
+.theme-europa .media-grid.is-carousel > .gallery-feature img { object-position: center 30%; }
 .media-button { position: relative; display: block; padding: 0; border: 0; overflow: hidden; background: transparent; cursor: zoom-in; }
 .media-button::after { content: "\e3d4"; position: absolute; right: 22px; bottom: 22px; display: grid; width: 44px; aspect-ratio: 1; place-items: center; border: 1px solid rgba(255,255,255,.72); border-radius: 50%; color: #fff; background: rgba(0,0,0,.2); backdrop-filter: blur(8px); font-family: "Phosphor"; font-size: 20px; }
 .media-button img { transition: transform 1s cubic-bezier(.22,1,.36,1); }

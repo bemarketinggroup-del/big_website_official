@@ -35,7 +35,7 @@ python3 -m http.server 8080
 │   ├── grand-hotel-la-favorita.html
 │   ├── vetera-matera.html
 │   ├── zest-restaurant.html
-│   └── costiera-gin.html
+│   └── grand-hotel-europa-palace.html
 ├── assets/
 │   ├── css/
 │   │   ├── site.css        ← Homepage: design system, layout e responsive
