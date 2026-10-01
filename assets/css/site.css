@@ -484,6 +484,11 @@ body.showcase-lightbox-open { overflow: hidden; }
   .footer-legal { grid-column: auto; padding-top: 35px; }
 }
 
+/* Photography keeps its original proportions at every breakpoint. */
+.showcase-track .showcase-card { width: auto; height: min(52svh, 460px, calc(88vw / var(--photo-ratio))); aspect-ratio: var(--photo-ratio); }
+.showcase-card img { object-fit: contain; }
+.showcase-card:hover img { transform: none; }
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
