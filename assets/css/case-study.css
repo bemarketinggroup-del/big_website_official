@@ -61,11 +61,10 @@ button { color: inherit; font: inherit; }
 .variant-editorial .case-title { font-family: var(--serif); font-style: italic; letter-spacing: -.04em; }
 .variant-product .case-title { font-weight: 550; }
 .case-meta { display: flex; flex-wrap: wrap; gap: 10px 26px; margin-top: 48px; padding-top: 22px; border-top: 1px solid color-mix(in srgb, var(--project-ink) 25%, transparent); color: color-mix(in srgb, var(--project-ink) 66%, transparent); }
-.case-hero-media { min-height: 100svh; background: var(--project-dark); overflow: hidden; }
+.case-hero-media { position: relative; min-height: 100svh; background: var(--project-dark); overflow: hidden; }
+.case-hero-media > .media-button { position: absolute; inset: 0; }
 .case-hero-media .media-button, .case-hero-media img { width: 100%; height: 100%; }
 .case-hero-media img { object-fit: cover; }
-.theme-europa .case-hero-media { position: relative; }
-.theme-europa .case-hero-media > .media-button { position: absolute; inset: 0; }
 .theme-europa .media-grid.is-carousel > .gallery-feature img { object-position: center 30%; }
 .media-button { position: relative; display: block; padding: 0; border: 0; overflow: hidden; background: transparent; cursor: zoom-in; }
 .media-button::after { content: "\e3d4"; position: absolute; right: 22px; bottom: 22px; display: grid; width: 44px; aspect-ratio: 1; place-items: center; border: 1px solid rgba(255,255,255,.72); border-radius: 50%; color: #fff; background: rgba(0,0,0,.2); backdrop-filter: blur(8px); font-family: "Phosphor"; font-size: 20px; }
@@ -170,10 +169,10 @@ button { color: inherit; font: inherit; }
 
 @media (min-width: 901px) {
   /* Desktop: le aperture restano d'impatto senza uscire dal viewport. */
-  .case-hero-copy { padding-top: 145px; padding-bottom: 46px; }
-  .case-eyebrow { margin-top: 7vh; margin-bottom: 22px; }
-  .case-title { max-width: 760px; font-size: clamp(58px, 6.15vw, 110px); line-height: .86; }
-  .case-meta { margin-top: 32px; padding-top: 17px; }
+  .case-hero-copy { min-width: 0; padding-top: clamp(96px, 20svh, 145px); padding-bottom: clamp(24px, 6svh, 46px); }
+  .case-eyebrow { margin-top: clamp(16px, 7svh, 50px); margin-bottom: clamp(14px, 3svh, 22px); }
+  .case-title { max-width: 760px; font-size: clamp(48px, min(6.15vw, 12svh), 110px); line-height: .86; }
+  .case-meta { margin-top: clamp(18px, 4svh, 32px); padding-top: clamp(12px, 2.4svh, 17px); }
   .hero-art-logo { width: min(62%, 360px); }
   .hero-art-name { font-size: clamp(86px, 11vw, 176px); }
 
