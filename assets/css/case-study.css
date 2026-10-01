@@ -253,10 +253,11 @@ button { color: inherit; font: inherit; }
   .lightbox-next { right: 12px; }
 }
 
-/* Both the featured photo and carousel preserve the supplied image format. */
-.media-grid.is-carousel > .gallery-feature[data-photo-format] { width: auto; max-width: 100%; height: min(62svh, 620px, calc((100vw - 2 * var(--pad)) / var(--photo-ratio))); max-height: none; aspect-ratio: var(--photo-ratio); margin-inline: auto; }
+/* The opening photo is full-width landscape; carousel photos keep their format. */
+.media-grid.is-carousel > .gallery-feature[data-photo-format] { width: 100%; height: auto; max-height: none; aspect-ratio: 16 / 9; margin-inline: 0; }
 .media-grid.is-carousel .gallery-track .media-slot[data-photo-format] { height: min(52svh, 480px, calc(88vw / var(--photo-ratio))); }
 .media-grid.is-carousel .media-slot img { object-fit: contain; }
+.media-grid.is-carousel > .gallery-feature img { object-fit: cover; }
 .media-grid.is-carousel .media-button:hover img { transform: none; }
 
 @media (prefers-reduced-motion: reduce) {
