@@ -87,6 +87,7 @@ button { color: inherit; font: inherit; }
 .case-story-text { max-width: 900px; margin: 0; font-size: clamp(22px, 2.4vw, 42px); line-height: 1.23; letter-spacing: -.025em; }
 
 .case-details { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(70px, 10vw, 180px); padding: 0 var(--pad) clamp(110px, 13vw, 200px); }
+.case-details--services-only { grid-template-columns: 1fr; }
 .service-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 30px; }
 .service-tags span { padding: 8px 12px; border: 1px solid color-mix(in srgb, var(--project-ink) 22%, transparent); border-radius: 999px; font-family: var(--mono); font-size: 9px; letter-spacing: .06em; text-transform: uppercase; }
 .case-stats { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid color-mix(in srgb, var(--project-ink) 25%, transparent); }
